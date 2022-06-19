@@ -1,0 +1,56 @@
+.navbar-custom
+{
+    background: #cea120 !important;
+
+}
+#sidebar-menu>ul>li>a , #sidebar-menu .menu-title,.nav-second-level li a
+{
+    color: #333 !important;
+}
+#sidebar-menu .menuitem-active>a {
+    color: #fff !important;
+    /* background: linear-gradient(270deg, rgba(145,168,95,1) 0%, rgba(59,82,38,1) 100%) !important; */
+    background: #cea120  !important;
+}
+#sidebar-menu .menuitem-active .active {
+    color: #cea120 !important;
+    background: transparent !important;
+}
+.btn-success {
+    background-color: #cea120 ;
+    border-color: #cea120 ;
+}
+.btn-success:hover , .page-item.active .page-link,
+.btn-check:focus+.btn-success, .btn-success:focus{
+    background-color: #cea120 ;
+    border-color: #cea120 ;
+}
+
+.card{
+    /* border:1px solid #DDD !important; */
+}
+/* .select2-container--default .select2-results__option--highlighted[aria-selected] */
+/* {
+    background-color: #4b6231 !important;
+} */
+.select2-container--default .select2-selection--single{
+    padding: 0 !important;
+}
+
+.form-check-input:checked
+{
+    background-color: #cea120 !important;
+    border-color: #cea120 !important;
+}
+
+.btn-primary , .bg-primary
+{
+    background-color: #cea120 !important;
+    border-color: #cea120 !important;
+}
+.select2-container--default .select2-results__option[aria-selected=true]:hover ,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container .select2-selection--multiple .select2-selection__choice {
+    background-color: #cea120 !important;
+
+}
