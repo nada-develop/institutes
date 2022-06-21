@@ -75,6 +75,7 @@ id="app-default-stylesheet" />
 @endif
 <link rel="stylesheet" href="{{ asset('assets/libs/toastr/toastr.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/stye.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/loader.css') }}">
 
 
 

@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('management', function (Blueprint $table) {
             $table->id();
+                $table->unsignedBigInteger('region_code')->nullable();
+                $table->bigInteger('code');
+                $table->string('name');
             $table->timestamps();
         });
     }

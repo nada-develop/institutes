@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('institutes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('region_code')->nullable();
+            $table->unsignedBigInteger('management_code')->nullable();
+            $table->bigInteger('code');
+            $table->string('name');
+            $table->bigInteger('type_code')->nullable();
+            $table->bigInteger('class_code')->nullable();
+            $table->bigInteger('gender_code')->nullable();
+            $table->string('institute_type')->nullable();
+            $table->string('class_name')->nullable();
+            $table->string('gender')->nullable();
+
             $table->timestamps();
         });
     }
