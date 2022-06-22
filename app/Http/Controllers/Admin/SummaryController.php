@@ -23,10 +23,8 @@ class SummaryController extends Controller
     public function fetch_summary(Request $request){
         $data =[];
         $data['regions'] = Region::all();
-        $data['managements'] = Management::all();
-        $data['institutes'] = Institute::all();
-        $data['managements_count'] =  Management::where('region_code',$request->region)->count();
-        $data['institutes_count'] = Institute::where('management_code',$request->management)->count();
+        $data['managements'] =  Management::where('region_code',$request->region)->get();
+        $data['institutes'] = Institute::where('management_code',$request->management)->get();
         return view('admin.summary.index',compact('data'));
     }
     public function fetch_management_from_region(Request $request){
