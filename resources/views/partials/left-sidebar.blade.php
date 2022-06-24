@@ -57,58 +57,83 @@
                                 <ul class="nav-second-level">
 
                                     <li>
-                                        <a href="{{ route("admin.permissions.index") }}"> {{ trans('cruds.permission.title') }}</a>
+                                        <a href="{{ route('admin.permissions.index') }}">
+                                            {{ trans('cruds.permission.title') }}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route("admin.roles.index") }}"> {{ trans('cruds.role.title') }}</a>
+                                        <a href="{{ route('admin.roles.index') }}"> {{ trans('cruds.role.title') }}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route("admin.users.index") }}">  {{ trans('cruds.user.title') }}</a>
+                                        <a href="{{ route('admin.users.index') }}"> {{ trans('cruds.user.title') }}</a>
                                     </li>
                                     @can('audit_log_access')
-                                    <li>
-                                        <a href="{{ route("admin.audit-logs.index") }}">   {{ trans('cruds.auditLog.title') }}</a>
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('admin.audit-logs.index') }}">
+                                                {{ trans('cruds.auditLog.title') }}</a>
+                                        </li>
                                     @endcan
                                 </ul>
                             </div>
                         </li>
                     @endcan
-                    @can('summary_management_access')
-
                     <li>
-                        <a href="{{ route('admin.summary') }}" >
-                            <i data-feather="bar-chart"></i>
-                            <span>  تحليل المعاهد</span>
+                        <a href="#reports" data-bs-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> التقارير </span>
+                            <span class="menu-arrow"></span>
                         </a>
-                    </li>
-                @endcan
-                @can('teacher_access')
-                <li>
-                    <a href="{{ route('admin.teachers.index') }}" >
-                        <i data-feather="user"></i>
-                        <span> ادراة المعلمين</span>
-                    </a>
-                </li>
-            @endcan
-                    @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
-                    @can('profile_password_edit')
+                        <div class="collapse" id="reports">
+                            <ul class="nav-second-level">
 
+                                @can('summary_management_access')
+                                    <li>
+                                        <a href="{{ route('admin.summary') }}">
+                                            <i data-feather="bar-chart"></i>
+                                            <span> تحليل المعاهد</span>
+                                        </a>
+                                    </li>
+                                    @endcan
+                                    <li>
+                                        <a href="{{ route('admin.teacher_with_places') }}">
+                                            <i data-feather="bar-chart"></i>
+                                            <span>المعلمين مقسمة لمناطق بالتخصصات</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.teacher_with_managements') }}">
+                                            <i data-feather="bar-chart"></i>
+                                            <span>المعلمين مقسمة لإدارات بالتخصصات</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </li>
+                    @can('teacher_access')
                         <li>
-                            <a href="{{ route('profile.password.edit') }}" >
-                                <i data-feather="edit-2"></i>
-                                <span>  {{ trans('global.change_password') }}</span>
+                            <a href="{{ route('admin.teachers.index') }}">
+                                <i data-feather="user"></i>
+                                <span> ادراة المعلمين</span>
                             </a>
                         </li>
                     @endcan
-                @endif
+                    @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
+                        @can('profile_password_edit')
+                            <li>
+                                <a href="{{ route('profile.password.edit') }}">
+                                    <i data-feather="edit-2"></i>
+                                    <span> {{ trans('global.change_password') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    @endif
 
-                <li>
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                        <i data-feather="log-out"></i>
-                        <span> {{ trans('global.logout') }} </span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                            <i data-feather="log-out"></i>
+                            <span> {{ trans('global.logout') }} </span>
+                        </a>
+                    </li>
 
                 </ul>
 
