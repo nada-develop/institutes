@@ -23,7 +23,42 @@ class TeacherController extends Controller
     public function index()
     {
         abort_if(Gate::denies('teacher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('admin.teachers.index');
+        $teachers = Teacher::paginate(env('PAGINATION_LENGTH', 5));
+        return view('admin.teachers.index',compact('teachers'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        // dd($request->all());
+        /* Request
+        [
+            page, // page number
+            legnth, // items per page
+            search_content,
+            page_type => ['index', 'trashed']
+        ]
+        */
+
+        $length = request()->length ?? env('PAGINATION_LENGTH', 5);
+        $searchContent = request()->search_content ?? '';
+        $pageType = request()->page_type;
+        $teachers = [];
+        if ($request->ajax()) {
+            if ($pageType == 'index') {
+                if ($length == -1) {
+                    $length = Teacher::count();
+                }
+                if (strlen($searchContent)) {
+                    $teachers = Teacher::where('teacher_name', 'like', '%' . $searchContent . '%')
+                    ->orWhere('teacher_code', 'like', '%' . $searchContent . '%')
+                    ->orWhere('institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                } else {
+                    $teachers = Teacher::paginate($length);
+                }
+            }
+
+            return view('admin.teachers.pagination_data', compact('teachers', 'pageType'))->render();
+        }
     }
 
     /**

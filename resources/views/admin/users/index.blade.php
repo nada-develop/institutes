@@ -155,3 +155,6 @@
 
 </script>
 @endsection
+@section('custom-script')
+    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+@endsection

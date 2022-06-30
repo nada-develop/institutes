@@ -31,7 +31,7 @@
 
 <!-- third party js ends -->
 <!-- Datatables init -->
-<script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+
 <script>
     $(window).on('load', function () {
     $('.dashboard-loader').fadeOut(500);
