@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
+use App\Models\Qualification;
+use App\Models\Region;
+use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Gate;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +33,12 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $data = [];
+        $data['regions'] = Region::all();
+        $data['subjects'] = Subject::all();
+        $data['qualifications'] = Qualification::all();
+        $data['jobs'] = Job::all();
+        return view('admin.teachers.create', compact('data'));
     }
 
     /**
@@ -39,7 +49,14 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->gender == 'male')
+            $request['gender_code'] = 1;
+        else
+            $request['gender_code'] = 2;
+
+        Teacher::create($request->all());
+
+        return redirect()->route('admin.teachers.index');
     }
 
     /**

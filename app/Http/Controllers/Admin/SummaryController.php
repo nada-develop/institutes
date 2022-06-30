@@ -41,7 +41,6 @@ class SummaryController extends Controller
         $institutes = Institute::where('management_code', $request->management_code)->pluck('code', 'name');
         return json_decode($institutes);
     }
-
     public function teacher_with_places(Request $request)
     {
         abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -98,6 +97,35 @@ class SummaryController extends Controller
         }
         return view('admin.summary.teacher_with_managements', compact('data'));
     }
+    public function teacher_with_institutes(Request $request)
+    {
+        abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $data = [];
+        $data['institutes'] = Institute::all();
+        $data['subjects'] = Subject::all();
+        if ($request->institute && $request->subject) {
+            if ($request->institute == 'all' && $request->subject == 'all') {
+                $data['institute_selected'] = 'all';
+                $data['subject_selected'] = 'all';
+                $data['teacher_count'] = Teacher::count();
+            } elseif ($request->institute != 'all' && $request->subject == 'all') {
+                $data['teacher_count'] = Teacher::where('institute_code', $request->institute)->count();
+                $data['institute_selected'] = Institute::where('code', $request->institute)->first();
+                $data['subject_selected'] = 'all';
+            } elseif ($request->institute == 'all' && $request->subject != 'all') {
+                $data['teacher_count'] = Teacher::where('subject_code', $request->subject)->count();
+                $data['institute_selected'] = 'all';
+                $data['subject_selected'] = Subject::where('code', $request->subject)->first();
+            } elseif ($request->institute != 'all' && $request->subject != 'all') {
+                $data['teacher_count'] = Teacher::where('subject_code', $request->subject)
+                ->where('institute_code', $request->institute)->count();
+                $data['institute_selected'] =Institute::where('code', $request->institute)->first();
+                $data['subject_selected'] = Subject::where('code', $request->subject)->first();
+            }
+        }
+        return view('admin.summary.teacher_with_institutes', compact('data'));
+    }
+
 
 
 }

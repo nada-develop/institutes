@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('summary',[SummaryController::class,'index'])->name('summary');
     Route::get('teacher-with-places/{region?}/{subject?}',[SummaryController::class,'teacher_with_places'])->name('teacher_with_places');
     Route::get('teacher-with-management/{management?}/{subject?}',[SummaryController::class,'teacher_with_managements'])->name('teacher_with_managements');
+    Route::get('teacher-with-institutes/{institute?}/{subject?}',[SummaryController::class,'teacher_with_institutes'])->name('teacher_with_institutes');
     Route::get('fetch-summary/{region?}/{management?}/{institute?}',[SummaryController::class,'fetch_summary'])->name('summary.fetch_summary');
 
 

@@ -4,7 +4,7 @@
         <div class="card-header">
             تحليل المعاهد
         </div>
-        <form action="{{ route('admin.teacher_with_managements') }}" method="get">
+        <form action="{{ route('admin.teacher_with_institutes') }}" method="get">
             <div class="container p-2">
                 <div class="row">
 
@@ -17,12 +17,12 @@
                     <div class="col-md-3">
 
                         <div class="form-group mb-2">
-                            <label for="" class="mb-1">الإدارات</label>
-                            <select class="form-control {{ $errors->has('management') ? 'is-invalid' : '' }}"
-                                data-toggle="select2" name="management" id="management" required>
-                                {{-- <option value="all" selected>جميع الإدارات</option> --}}
-                                @foreach ($data['managements'] as $management)
-                                    <option @if( (isset($data['management_selected']) ? ($data['management_selected'] != 'all' ? $data['management_selected']->code : '') : '') == $management->code) selected @endif  value="{{ $management->code }}">{{ $management->name }} </option>
+                            <label for="" class="mb-1">المعاهد</label>
+                            <select class="form-control {{ $errors->has('institute') ? 'is-invalid' : '' }}"
+                                data-toggle="select2" name="institute" id="institute" required>
+                                {{-- <option value="all" selected>جميع المعاهد</option> --}}
+                                @foreach ($data['institutes'] as $institute)
+                                    <option @if( (isset($data['institute_selected']) ? ($data['institute_selected'] != 'all' ? $data['institute_selected']->code : '') : '') == $institute->code) selected @endif  value="{{ $institute->code }}">{{ $institute->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -57,13 +57,13 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="mb-3"> حصر عام بأعداد المعملين مقسمة لإدارات بالتخصصات المختلفة</h3>
-                                            @if(isset($data['management_selected']))
+                                            <h3 class="mb-3"> حصر عام بأعداد المعملين مقسمة لمعاهد بالتخصصات المختلفة</h3>
+                                            @if(isset($data['institute_selected']))
                                             <div class="table-responsive">
                                                 <table class="table table-bordered mb-0" >
                                                     <thead>
                                                         <tr>
-                                                            <th>الإداره</th>
+                                                            <th>المعهد</th>
                                                             <th>التخصصات</th>
                                                             <th>عدد المعلمين</th>
                                                         </tr>
@@ -71,7 +71,7 @@
                                                     <tbody>
                                                         <tr>
 
-                                                            <td>{{ $data['management_selected'] != 'all' ? $data['management_selected']->name : 'الكل' }}</td>
+                                                            <td>{{ $data['institute_selected'] != 'all' ? $data['institute_selected']->name : 'الكل' }}</td>
                                                             <td>{{ $data['subject_selected'] != 'all' ? $data['subject_selected']->name : 'الكل'}}</td>
                                                             <td>{{ $data['teacher_count'] }}</td>
                                                         </tr>

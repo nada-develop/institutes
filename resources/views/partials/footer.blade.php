@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">
-                <script>document.write(new Date().getFullYear())</script> &copy; nursologist by <a href="http://4atech.net/" target="_blank">4A Tech</a>
+                
             </div>
 
         </div>

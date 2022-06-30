@@ -105,6 +105,12 @@
                                             <span>المعلمين مقسمة لإدارات بالتخصصات</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('admin.teacher_with_institutes') }}">
+                                            <i data-feather="bar-chart"></i>
+                                            <span>المعلمين مقسمة لمعاهد بالتخصصات</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                     </li>
