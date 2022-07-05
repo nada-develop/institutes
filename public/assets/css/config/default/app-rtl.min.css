@@ -2376,7 +2376,7 @@ body.authentication-bg-pattern {
     display: none; } }
 
 .timeline-sm {
-  padding-right: 110px; }
+  padding-right: 30px; }
   .timeline-sm .timeline-sm-item {
     position: relative;
     padding-bottom: 20px;
