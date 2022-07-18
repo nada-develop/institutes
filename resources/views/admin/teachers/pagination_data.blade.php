@@ -30,15 +30,15 @@ $currentIndex = $teachers->firstItem();
                             style="height: 29px;line-height: 10px;margin-left:10px !important;margin-right:10px !important;" href="{{ route('admin.teachers.show', $teacher->id) }}">
                                 <i class="fa fa-eye" ></i>
                                 عرض </a>
-                            <a class=" btn btn-warning my-1 mx-0"
+                            {{--  <a class=" btn btn-warning my-1 mx-0"
                             style="height: 29px" href="{{ route('admin.teachers.edit', $teacher->id) }}">
                                 <i class="fa fa-edit" ></i>
-                                تعديل </a>
+                                تعديل </a>  --}}
                                 <form action="{{ route('admin.teachers.destroy',$teacher->id) }}" method="POST">
                                     @method('delete')
                                     @csrf
                                        <button type="submit" class="btn  btn-danger  my-1 mx-0" >
-                                        <i class="las la-trash"></i>
+                                        <i class="fa fa-trash"></i>
                                      حذف
                                     </button>
                             </form>
