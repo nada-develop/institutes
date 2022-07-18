@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // teacher
     Route::resource('teachers', TeacherController::class);
     Route::get('teachers/pagination/fetch_data', [TeacherController::class, 'fetch_data'])->name('teacher.pagination.fetch_data');
+    Route::get('fetch-qualification-from-type', [TeacherController::class, 'fetch_qualification_from_type'])->name('teacher.fetch_qualification_from_type');
 
 
 });

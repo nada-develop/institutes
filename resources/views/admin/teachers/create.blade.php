@@ -73,15 +73,24 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
+                                            <label for="qualification_type" class="form-label"> نوع المؤهل</label>
+                                            <select class="form-control" id="qualification_type" name="qualification_type"
+                                                data-toggle="select2" required>
+                                                @foreach ($data['qualifications_type'] as $qualification)
+                                                    <option value="{{ $qualification->type }}">
+                                                        {{ $qualification->type }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Required Field
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
                                             <label for="qualification_name" class="form-label"> المؤهل</label>
                                             <select class="form-control" id="qualification_name" name="qualification_name"
                                                 data-toggle="select2" required>
-                                                <option value="اختر من القائمة" data-code="0">اختر من القائمة</option>
-                                                @foreach ($data['qualifications'] as $qualification)
-                                                    <option value="{{ $qualification->name }}"
-                                                        data-code="{{ $qualification->code }}">
-                                                        {{ $qualification->name }}</option>
-                                                @endforeach
 
                                             </select>
                                             <div class="invalid-feedback">
@@ -99,16 +108,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="validationCustom03" class="form-label">نوع المؤهل </label>
-                                            <input type="text" class="form-control" id="validationCustom03"
-                                                name="qualification_type" required>
-                                            <div class="invalid-feedback">
-                                                Required Field
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="validationCustom03" class="form-label"> تاريخ الحصول على المؤهل
@@ -182,8 +182,7 @@
                                             <label for="" class="mb-1">معهد أخر</label>
                                             <select
                                                 class="form-control {{ $errors->has('another_institute') ? 'is-invalid' : '' }}"
-                                                data-toggle="select2" name="another_institute" id="another_institute"
-                                                >
+                                                data-toggle="select2" name="another_institute" id="another_institute">
                                             </select>
                                         </div>
                                     </div>
@@ -217,9 +216,10 @@
                                                 name="subject_code" id="subject_code" readonly required>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
-                                            <label for="" class="mb-1">مادة تخصص اخرى </label>
+                                            <label for="" class="mb-1">مادة تخصص 1 </label>
                                             <select
                                                 class="form-control {{ $errors->has('another_subject') ? 'is-invalid' : '' }}"
                                                 data-toggle="select2" name="another_subject" id="another_subject"
@@ -233,13 +233,45 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
+
                                         <div class="form-group mb-2">
-                                            <label for="" class="mb-1"> كود مادة التخصص الاخرى </label>
+                                            <label for="" class="mb-1"> كود مادة التخصص 1 </label>
                                             <input
                                                 class="form-control {{ $errors->has('another_subject_code') ? 'is-invalid' : '' }}"
                                                 name="another_subject_code" id="another_subject_code" readonly >
                                         </div>
+
                                     </div>
+
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label for="" class="mb-1">مادة تخصص 2 </label>
+                                            <select
+                                                class="form-control {{ $errors->has('another_subject_two') ? 'is-invalid' : '' }}"
+                                                data-toggle="select2" name="another_subject_two" id="another_subject_two"
+                                                >
+                                                <option value="">اختر المادة</option>
+                                                @foreach ($data['subjects'] as $subject)
+                                                    <option value="{{ $subject->name }}" data-code="{{ $subject->code }}" >{{ $subject->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <div class="form-group mb-2">
+                                            <label for="" class="mb-1"> كود مادة التخصص 2 </label>
+                                            <input
+                                                class="form-control {{ $errors->has('another_subject_two_code') ? 'is-invalid' : '' }}"
+                                                name="another_subject_two_code" id="another_subject_two_code" readonly >
+                                        </div>
+
+                                    </div>
+
+
                                     <hr style="color: #cea120">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -259,6 +291,7 @@
                                                 Looks good!
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -531,6 +564,11 @@
                 success: function(response) {
                     $('.search-loader').addClass('d-none');
                     $('#management').find('option').remove();
+                    $('#institute').find('option').remove();
+                    $('#another_institute').find('option').remove();
+                    $('#management_code').val('');
+                    $('#institute_code').val('');
+                    $('#another_institute_code').val('');
                     if (response.length != 0) {
                         $('#region_code').val(region_code);
                         $('#management').append(`<option selected disabled> اختر الاداره </option>`);
@@ -541,7 +579,6 @@
                     }
                 },
             });
-
 
         });
         $('#management').on('change', function() {
@@ -557,6 +594,8 @@
                     $('.search-loader').addClass('d-none');
                     $('#institute').find('option').remove();
                     $('#another_institute').find('option').remove();
+                    $('#institute_code').val('');
+                    $('#another_institute_code').val('');
                     if (response.length != 0) {
                         $('#management_code').val(management_code);
                         $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
@@ -576,6 +615,30 @@
             });
 
         });
+        $('#qualification_type').on('change', function() {
+            var qualification_type = $(this).val();
+             $('.search-loader').removeClass('d-none');
+            $.ajax({
+                url: "/admin/fetch-qualification-from-type",
+                type: "GET",
+                data: {
+                    qualification_type: qualification_type
+                },
+                success: function(response) {
+                    $('.search-loader').addClass('d-none');
+
+                     $('#qualification_name').find('option').remove();
+                     if (response.length != 0) {
+                         $('#qualification_name').append(`<option value="اختر من القائمة" data-code="0">اختر من القائمة</option>`);
+                         $.each(response, function(index, value) {
+                             $('#qualification_name').append(
+                                 `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                         });
+                     }
+                     $('#qualification_name').trigger('change');
+                },
+            });
+        });
         $('#institute').on('change', function() {
             var institute_code = $(this).find(":selected").data('code');
             $('#institute_code').val(institute_code);
@@ -589,6 +652,9 @@
         });
         $('#another_subject').on('change', function() {
             $('#another_subject_code').val($(this).find(":selected").data('code'));
+        });
+        $('#another_subject_two').on('change', function() {
+            $('#another_subject_two_code').val($(this).find(":selected").data('code'));
         });
         $('#job_name').on('change', function() {
             $('#job_code').val($(this).find(":selected").data('code'));

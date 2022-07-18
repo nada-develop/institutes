@@ -29,6 +29,8 @@ class Teacher extends Model
         'subject_code',
         'another_subject',
         'another_subject_code',
+        'another_subject_two',
+        'another_subject_two_code',
         'degree',
         'degree_code',
         'date_of_obtaining',

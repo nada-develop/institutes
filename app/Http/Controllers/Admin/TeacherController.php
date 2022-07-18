@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
+use App\Models\Management;
 use App\Models\Qualification;
 use App\Models\Region;
 use App\Models\Subject;
@@ -72,6 +73,7 @@ class TeacherController extends Controller
         $data['regions'] = Region::all();
         $data['subjects'] = Subject::all();
         $data['qualifications'] = Qualification::all();
+        $data['qualifications_type'] = Qualification::select('type')->groupBy('type')->get();
         $data['jobs'] = Job::all();
         return view('admin.teachers.create', compact('data'));
     }
@@ -114,7 +116,14 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['teacher'] = Teacher::find($id);
+        $data['regions'] = Region::all();
+        $data['managements'] = Management::where('region_code', $data['teacher']['region_code'])->get();
+        $data['subjects'] = Subject::all();
+        $data['qualifications'] = Qualification::where('type', $data['teacher']['qualification_type'])->get();
+        $data['qualifications_type'] = Qualification::select('type')->groupBy('type')->get();
+        $data['jobs'] = Job::all();
+        return view('admin.teachers.edit', compact('data'));
     }
 
     /**
@@ -139,4 +148,10 @@ class TeacherController extends Controller
     {
         //
     }
+
+    public function fetch_qualification_from_type(Request $request){
+        $qualifications = Qualification::where('type', $request->qualification_type)->pluck('code', 'name');
+        return json_decode($qualifications);
+    }
+
 }
