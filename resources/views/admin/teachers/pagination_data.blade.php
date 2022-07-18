@@ -34,7 +34,8 @@ $currentIndex = $teachers->firstItem();
                             style="height: 29px" href="{{ route('admin.teachers.edit', $teacher->id) }}">
                                 <i class="fa fa-edit" ></i>
                                 تعديل </a>  --}}
-                                <form action="{{ route('admin.teachers.destroy',$teacher->id) }}" method="POST">
+                                <form action="{{ route('admin.teachers.destroy',$teacher->id) }}"
+                                    onsubmit="return confirm('هل أنت متأكد من حذف  ({{ $teacher->teacher_name  }}) ؟' );"  method="POST">
                                     @method('delete')
                                     @csrf
                                        <button type="submit" class="btn  btn-danger  my-1 mx-0" >

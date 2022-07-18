@@ -18,7 +18,7 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    {{--  <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="validationCustom01" class="form-label">كود المعلم</label>
                                             <input type="number" class="form-control" id="validationCustom01"
@@ -62,8 +62,8 @@
                                         <div class="mb-3">
                                             <label for="validationCustom01" class="form-label">النوع</label>
                                             <select name="gender" id="" class="form-control" required>
-                                                <option value="male" @if( $data['teacher']['gender'] == 'male') selected @endif>ذكر</option>
-                                                <option value="female" @if( $data['teacher']['gender'] == 'female') selected @endif >انثى</option>
+                                                <option value="male" @if ($data['teacher']['gender'] == 'male') selected @endif>ذكر</option>
+                                                <option value="female" @if ($data['teacher']['gender'] == 'female') selected @endif >انثى</option>
                                             </select>
 
                                             <div class="valid-feedback">
@@ -78,7 +78,7 @@
                                             <select class="form-control" id="qualification_type" name="qualification_type"
                                                 data-toggle="select2" required>
                                                 @foreach ($data['qualifications_type'] as $qualification)
-                                                    <option value="{{ $qualification->type }}" @if( $data['teacher']['qualification_type'] == $qualification->type ) selected @endif>
+                                                    <option value="{{ $qualification->type }}" @if ($data['teacher']['qualification_type'] == $qualification->type) selected @endif>
                                                         {{ $qualification->type }}</option>
                                                 @endforeach
                                             </select>
@@ -95,7 +95,7 @@
                                                 @foreach ($data['qualifications'] as $qualification)
                                                 <option value="{{ $qualification->name }}"
                                                     data-code="{{ $qualification->code }}"
-                                                     @if( $data['teacher']['qualification_name'] == $qualification->name ) selected @endif>
+                                                     @if ($data['teacher']['qualification_name'] == $qualification->name) selected @endif>
                                                     {{ $qualification->name }}</option>
                                             @endforeach
                                             </select>
@@ -125,7 +125,7 @@
                                                 Required Field
                                             </div>
                                         </div>
-                                    </div>  --}}
+                                    </div>
                                     <hr style="color: #cea120">
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
@@ -135,7 +135,7 @@
                                                 <option selected disabled>اختر المنطقة</option>
                                                 @foreach ($data['regions'] as $region)
                                                     <option value="{{ $region->name }}"
-                                                        @if( $data['teacher']['region'] == $region->name ) selected @endif
+                                                        @if ($data['teacher']['region'] == $region->name) selected @endif
                                                         data-code="{{ $region->code }}">{{ $region->name }} </option>
                                                 @endforeach
                                             </select>
@@ -158,7 +158,7 @@
                                                 data-toggle="select2" name="management" id="management" required>
                                                 @foreach ($data['managements'] as $management)
                                                 <option value="{{ $management->name }}"
-                                                    @if( $data['teacher']['management_code'] == $management->management_code ) selected @endif
+                                                    @if ($data['teacher']['management_code'] == $management->management_code) selected @endif
                                                     data-code="{{ $management->code }}">{{ $management->name }} </option>
                                             @endforeach
                                             </select>
@@ -178,7 +178,11 @@
                                             <select
                                                 class="form-control {{ $errors->has('institute') ? 'is-invalid' : '' }}"
                                                 data-toggle="select2" name="institute" id="institute" required>
-
+                                                @foreach ($data['institutes'] as $institute)
+                                                <option value="{{ $institute->name }}"
+                                                    @if ($data['teacher']['institute_code'] == $institute->code) selected @endif
+                                                    data-code="{{ $institute->code }}">{{ $institute->name }} </option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -187,7 +191,7 @@
                                             <label for="" class="mb-1">كود المعهد</label>
                                             <input
                                                 class="form-control {{ $errors->has('institute_code') ? 'is-invalid' : '' }}"
-                                                name="institute_code" id="institute_code" readonly required>
+                                                name="institute_code"  value="{{  $data['teacher']['institute_code'] }}" id="institute_code" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -196,6 +200,11 @@
                                             <select
                                                 class="form-control {{ $errors->has('another_institute') ? 'is-invalid' : '' }}"
                                                 data-toggle="select2" name="another_institute" id="another_institute">
+                                                @foreach ($data['institutes'] as $institute)
+                                                <option value="{{ $institute->name }}"
+                                                    @if ($data['teacher']['another_institute_code'] == $institute->code) selected @endif
+                                                    data-code="{{ $institute->code }}">{{ $institute->name }} </option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -204,7 +213,7 @@
                                             <label for="" class="mb-1"> كود المعهد الاخر</label>
                                             <input
                                                 class="form-control {{ $errors->has('another_institute_code') ? 'is-invalid' : '' }}"
-                                                name="another_institute_code" id="another_institute_code" readonly
+                                                name="another_institute_code"  value="{{  $data['teacher']['another_institute_code'] }}"  id="another_institute_code" readonly
                                                 >
                                         </div>
                                     </div>
@@ -215,7 +224,9 @@
                                                 class="form-control {{ $errors->has('subject') ? 'is-invalid' : '' }}"
                                                 data-toggle="select2" name="subject" id="subject" required>
                                                 @foreach ($data['subjects'] as $subject)
-                                                    <option value="{{ $subject->name }}" data-code="{{ $subject->code }}">{{ $subject->name }}
+                                                    <option value="{{ $subject->name }}"
+                                                        @if ($data['teacher']['subject'] == $subject->name) selected @endif
+                                                        data-code="{{ $subject->code }}">{{ $subject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -239,7 +250,9 @@
                                                 >
                                                 <option value="">اختر المادة</option>
                                                 @foreach ($data['subjects'] as $subject)
-                                                    <option value="{{ $subject->name }}" data-code="{{ $subject->code }}" >{{ $subject->name }}
+                                                    <option value="{{ $subject->name }}"
+                                                        @if ($data['teacher']['another_subject'] == $subject->name) selected @endif
+                                                        data-code="{{ $subject->code }}" >{{ $subject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -267,7 +280,9 @@
                                                 >
                                                 <option value="">اختر المادة</option>
                                                 @foreach ($data['subjects'] as $subject)
-                                                    <option value="{{ $subject->name }}" data-code="{{ $subject->code }}" >{{ $subject->name }}
+                                                    <option value="{{ $subject->name }}"
+                                                        @if ($data['teacher']['another_subject_two'] == $subject->name) selected @endif
+                                                        data-code="{{ $subject->code }}" >{{ $subject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -282,9 +297,7 @@
                                                 name="another_subject_two_code" id="another_subject_two_code" readonly >
                                         </div>
 
-                                    </div>
-
-
+                                    </div> --}}
                                     <hr style="color: #cea120">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -292,12 +305,12 @@
                                             <select name="job_attitude" id="job_attitude" data-toggle="select2"
                                                 class="form-control" required>
                                                 <option value="اختر من القائمة" data-code="0"> اختر من القائمة </option>
-                                                <option data-code="1">على رأس عملة</option>
-                                                <option data-code="2">معار للخارج</option>
-                                                <option data-code="3">منتدب للخارج</option>
-                                                <option data-code="5">معار للداخل</option>
-                                                <option data-code="6">انهاء خدمه</option>
-                                                <option data-code="17">اجازة بدون مرتب</option>
+                                                <option data-code="1"  @if ($data['teacher']['job_attitude_code'] == '1') selected @endif>على رأس عملة</option>
+                                                <option data-code="2"  @if ($data['teacher']['job_attitude_code'] == '2') selected @endif>معار للخارج</option>
+                                                <option data-code="3"  @if ($data['teacher']['job_attitude_code'] == '3') selected @endif>منتدب للخارج</option>
+                                                <option data-code="5"  @if ($data['teacher']['job_attitude_code'] == '5') selected @endif>معار للداخل</option>
+                                                <option data-code="6"  @if ($data['teacher']['job_attitude_code'] == '6') selected @endif>انهاء خدمه</option>
+                                                <option data-code="17"  @if ($data['teacher']['job_attitude_code'] == '17') selected @endif>اجازة بدون مرتب</option>
                                             </select>
 
                                             <div class="valid-feedback">
@@ -312,7 +325,7 @@
                                             </label>
                                             <input type="number" class="form-control" id="job_attitude_code"
                                                 name="job_attitude_code" readonly placeholder="كود الموقف من العمل  "
-                                                required />
+                                                required  />
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -322,7 +335,7 @@
                                         <div class="mb-3">
                                             <label for="validationCustom01" class="form-label"> كود الكفاءه </label>
                                             <input type="text" class="form-control" id="validationCustom01"
-                                                name="efficiency_code" placeholder="كود الكفاءه  " required />
+                                                name="efficiency_code" value="{{ $data['teacher']['efficiency_code'] }}" placeholder="كود الكفاءه  " required />
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -332,14 +345,14 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="degree" class="form-label">الدرجة </label>
-                                            <select class="form-control" id="degree" name="degree"
-                                                data-toggle="select2" required>
-                                                <option data-code="2">عليا</option>
-                                                <option data-code="3">مديرعام</option>
-                                                <option data-code="5">الأولى</option>
-                                                <option data-code="6">الثانية</option>
-                                                <option data-code="7">الثالثة</option>
-                                                <option data-code="11">بدون درجة</option>
+                                            <select class="form-control" id="degree" name="degree" data-toggle="select2"
+                                                required>
+                                                <option data-code="2" @if ($data['teacher']['degree_code'] == '2') selected @endif>عليا</option>
+                                                <option data-code="3" @if ($data['teacher']['degree_code'] == '3') selected @endif>مديرعام</option>
+                                                <option data-code="5" @if ($data['teacher']['degree_code'] == '5') selected @endif>الأولى</option>
+                                                <option data-code="6" @if ($data['teacher']['degree_code'] == '6') selected @endif>الثانية</option>
+                                                <option data-code="7" @if ($data['teacher']['degree_code'] == '7') selected @endif>الثالثة</option>
+                                                <option data-code="11" @if ($data['teacher']['degree_code'] == '11') selected @endif>بدون درجة</option>
                                             </select>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -352,7 +365,7 @@
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="degree_code"
                                                     name="degree_code" readonly placeholder="كود الدرجه"
-                                                    aria-describedby="inputGroupPrepend" required />
+                                                    aria-describedby="inputGroupPrepend"  required />
                                                 <div class="invalid-feedback">
                                                     Required Field
                                                 </div>
@@ -363,7 +376,7 @@
                                         <div class="mb-3">
                                             <label for="validationCustom03" class="form-label">تاريخ الحصول</label>
                                             <input type="date" class="form-control" id="validationCustom03"
-                                                name="date_of_obtaining" required />
+                                                name="date_of_obtaining"  value="{{ $data['teacher']['date_of_obtaining'] }}"  required />
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -373,7 +386,7 @@
                                         <div class="mb-3">
                                             <label for="validationCustom03" class="form-label">تاريخ التعيين</label>
                                             <input type="date" class="form-control" id="validationCustom03"
-                                                name="hiring_date" required />
+                                                name="hiring_date" value="{{ $data['teacher']['hiring_date'] }}" required />
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -384,8 +397,8 @@
                                             <label for="validationCustom03" class="form-label"> نوع التعيين</label>
                                             <select class="form-control" id="validationCustom03" name="hiring_type"
                                                 required>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                                <option value="1"  @if ($data['teacher']['hiring_type'] == '1') selected @endif>1</option>
+                                                <option value="2"  @if ($data['teacher']['hiring_type'] == '2') selected @endif>2</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Required Field
@@ -396,7 +409,7 @@
                                         <div class="mb-3">
                                             <label for="validationCustom03" class="form-label">تاريخ استلام العمل</label>
                                             <input type="date" class="form-control" id="validationCustom03"
-                                                name="date_receipt_the_work" required />
+                                                name="date_receipt_the_work" value="{{ $data['teacher']['date_receipt_the_work'] }}"  required />
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -408,32 +421,32 @@
                                                 المعلم</label>
                                             <select class="form-control" id="job_staff" name="job_staff"
                                                 data-toggle="select2" required>
-                                                <option value="0" data-code="0"> --- </option>
-                                                <option data-code="1">غير مستوفي شروط التسكين</option>
-                                                <option data-code="202">معلم </option>
-                                                <option data-code="203">معلم أول </option>
-                                                <option data-code="204">معلم أول أ</option>
-                                                <option data-code="205">معلم خبير</option>
-                                                <option data-code="206">كبير معلمين</option>
-                                                <option data-code="208">أخصائى اجتماعى </option>
-                                                <option data-code="209">أخصائى اجتماعى أول</option>
-                                                <option data-code="210">أخصائى اجتماعى أول أ</option>
-                                                <option data-code="211">أخصائى اجتماعى خبير</option>
-                                                <option data-code="212">كبير أخصائيين اجتماعيين</option>
-                                                <option data-code="213">مشرف اجتماعى</option>
-                                                <option data-code="214">مشرف اجتماعى أول</option>
-                                                <option data-code="215">مشرف اجتماعى أول أ</option>
-                                                <option data-code="216">مشرف اجتماعى خبير</option>
-                                                <option data-code="224">أخصائى تكنولوجيا</option>
-                                                <option data-code="230">أخصائى صحافة وإعلام</option>
-                                                <option data-code="233">أخصائى صحافة واعلام خبير</option>
-                                                <option data-code="236">أمين مكتبة </option>
-                                                <option data-code="237">أمين مكتبة أول</option>
-                                                <option data-code="238">أمين مكتبة أول أ</option>
-                                                <option data-code="239">أمين مكتبة خبير</option>
-                                                <option data-code="240">كبيرأمناء مكتبات</option>
-                                                <option data-code="241">موجه</option>
-                                                <option data-code="243">موجه أول</option>
+                                                <option value="0" data-code="0"  @if ($data['teacher']['job_staff_code'] == '0') selected @endif > --- </option>
+                                                <option data-code="1"  @if ($data['teacher']['job_staff_code'] == '1') selected @endif >غير مستوفي شروط التسكين</option>
+                                                <option data-code="202"  @if ($data['teacher']['job_staff_code'] == '202') selected @endif >معلم </option>
+                                                <option data-code="203"  @if ($data['teacher']['job_staff_code'] == '203') selected @endif >معلم أول </option>
+                                                <option data-code="204"  @if ($data['teacher']['job_staff_code'] == '204') selected @endif >معلم أول أ</option>
+                                                <option data-code="205"  @if ($data['teacher']['job_staff_code'] == '205') selected @endif >معلم خبير</option>
+                                                <option data-code="206"  @if ($data['teacher']['job_staff_code'] == '206') selected @endif >كبير معلمين</option>
+                                                <option data-code="208"  @if ($data['teacher']['job_staff_code'] == '208') selected @endif >أخصائى اجتماعى </option>
+                                                <option data-code="209"  @if ($data['teacher']['job_staff_code'] == '209') selected @endif >أخصائى اجتماعى أول</option>
+                                                <option data-code="210"  @if ($data['teacher']['job_staff_code'] == '210') selected @endif >أخصائى اجتماعى أول أ</option>
+                                                <option data-code="211"  @if ($data['teacher']['job_staff_code'] == '211') selected @endif >أخصائى اجتماعى خبير</option>
+                                                <option data-code="212"  @if ($data['teacher']['job_staff_code'] == '212') selected @endif >كبير أخصائيين اجتماعيين</option>
+                                                <option data-code="213"  @if ($data['teacher']['job_staff_code'] == '213') selected @endif >مشرف اجتماعى</option>
+                                                <option data-code="214"  @if ($data['teacher']['job_staff_code'] == '214') selected @endif >مشرف اجتماعى أول</option>
+                                                <option data-code="215"  @if ($data['teacher']['job_staff_code'] == '215') selected @endif >مشرف اجتماعى أول أ</option>
+                                                <option data-code="216"  @if ($data['teacher']['job_staff_code'] == '216') selected @endif >مشرف اجتماعى خبير</option>
+                                                <option data-code="224"  @if ($data['teacher']['job_staff_code'] == '224') selected @endif >أخصائى تكنولوجيا</option>
+                                                <option data-code="230"  @if ($data['teacher']['job_staff_code'] == '230') selected @endif >أخصائى صحافة وإعلام</option>
+                                                <option data-code="233"  @if ($data['teacher']['job_staff_code'] == '233') selected @endif >أخصائى صحافة واعلام خبير</option>
+                                                <option data-code="236"  @if ($data['teacher']['job_staff_code'] == '236') selected @endif >أمين مكتبة </option>
+                                                <option data-code="237"  @if ($data['teacher']['job_staff_code'] == '237') selected @endif >أمين مكتبة أول</option>
+                                                <option data-code="238"  @if ($data['teacher']['job_staff_code'] == '238') selected @endif >أمين مكتبة أول أ</option>
+                                                <option data-code="239"  @if ($data['teacher']['job_staff_code'] == '239') selected @endif >أمين مكتبة خبير</option>
+                                                <option data-code="240"  @if ($data['teacher']['job_staff_code'] == '240') selected @endif >كبيرأمناء مكتبات</option>
+                                                <option data-code="241"  @if ($data['teacher']['job_staff_code'] == '241') selected @endif >موجه</option>
+                                                <option data-code="243"  @if ($data['teacher']['job_staff_code'] == '243') selected @endif >موجه أول</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Required Field
@@ -444,8 +457,8 @@
                                         <div class="mb-3">
                                             <label for="job_staff_code" class="form-label"> كود الوظيفة على كادرالمعلم
                                             </label>
-                                            <input class="form-control" type="number" id="job_staff_code" name="job_staff_code"
-                                                readonly required>
+                                            <input class="form-control" type="number" id="job_staff_code"
+                                                name="job_staff_code"  readonly required>
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -456,7 +469,7 @@
                                             <label for="validationCustom03" class="form-label">تاريخ قرار الوظيفة على
                                                 الكادر</label>
                                             <input type="date" class="form-control" id="validationCustom03"
-                                                name="job_decision_staff_date" required />
+                                                name="job_decision_staff_date"  value="{{ $data['teacher']['job_decision_staff_date'] }}" required />
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -467,7 +480,7 @@
                                             <label for="validationCustom03" class="form-label"> رقم قرار الوظيفة على
                                                 الكادر</label>
                                             <input class="form-control" id="validationCustom03" type="number"
-                                                name="job_decision_staff_code" required>
+                                                name="job_decision_staff_code" value="{{ $data['teacher']['job_decision_staff_code'] }}" required>
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -499,8 +512,8 @@
                                         <div class="mb-3">
                                             <label for="group_type_code" class="form-label"> كود المجموعة النوعية
                                             </label>
-                                            <input class="form-control" type="number" id="group_type_code" name="group_type_code"
-                                                 readonly required>
+                                            <input class="form-control" type="number" id="group_type_code"
+                                                name="group_type_code" readonly required>
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -524,7 +537,8 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="job_code" class="form-label"> كود الوظيفة </label>
-                                            <input class="form-control" type="number" id="job_code" name="job_code" required>
+                                            <input class="form-control" type="number" id="job_code" name="job_code"
+                                                required>
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -564,6 +578,9 @@
             $('#job_staff').trigger('change');
             $('#degree').trigger('change');
             $('#job_attitude').trigger('change');
+            $('#subject').trigger('change');
+            $('#another_subject').trigger('change');
+            $('#another_subject_two').trigger('change');
         });
         $('#region').on('change', function() {
             var region_code = $(this).find(":selected").data('code');
@@ -587,7 +604,8 @@
                         $('#management').append(`<option selected disabled> اختر الاداره </option>`);
                         $.each(response, function(index, value) {
                             $('#management').append(
-                                `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                                `<option value="${index}" data-code="${value}"> ${index}</option>`
+                                );
                         });
                     }
                 },
@@ -614,14 +632,16 @@
                         $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
                         $.each(response, function(index, value) {
                             $('#institute').append(
-                                `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                                `<option value="${index}" data-code="${value}"> ${index}</option>`
+                                );
                         });
 
                         $('#another_institute').append(
                             `<option value=""> اختر المعهد </option>`);
                         $.each(response, function(index, value) {
                             $('#another_institute').append(
-                                `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                                `<option value="${index}" data-code="${value}"> ${index}</option>`
+                                );
                         });
                     }
                 },
@@ -630,7 +650,7 @@
         });
         $('#qualification_type').on('change', function() {
             var qualification_type = $(this).val();
-             $('.search-loader').removeClass('d-none');
+            $('.search-loader').removeClass('d-none');
             $.ajax({
                 url: "/admin/fetch-qualification-from-type",
                 type: "GET",
@@ -640,15 +660,18 @@
                 success: function(response) {
                     $('.search-loader').addClass('d-none');
 
-                     $('#qualification_name').find('option').remove();
-                     if (response.length != 0) {
-                         $('#qualification_name').append(`<option value="اختر من القائمة" data-code="0">اختر من القائمة</option>`);
-                         $.each(response, function(index, value) {
-                             $('#qualification_name').append(
-                                 `<option value="${index}" data-code="${value}"> ${index}</option>`);
-                         });
-                     }
-                     $('#qualification_name').trigger('change');
+                    $('#qualification_name').find('option').remove();
+                    if (response.length != 0) {
+                        $('#qualification_name').append(
+                            `<option value="اختر من القائمة" data-code="0">اختر من القائمة</option>`
+                            );
+                        $.each(response, function(index, value) {
+                            $('#qualification_name').append(
+                                `<option value="${index}" data-code="${value}"> ${index}</option>`
+                                );
+                        });
+                    }
+                    $('#qualification_name').trigger('change');
                 },
             });
         });

@@ -96,9 +96,9 @@
                                                     <li class="timeline-sm-item">
                                                         <span class="mb-2 d-block">تخصص اخر 2</span>
                                                         <h5 class="mt-0 mb-1">
-                                                            {{ $teacher->another_subject }}
+                                                            {{ $teacher->another_subject_two }}
                                                         </h5>
-                                                        <p>الكود : {{   $teacher->another_subject_code}}</p>
+                                                        <p>الكود : {{   $teacher->another_subject_two_code}}</p>
                                                     </li>
 
 

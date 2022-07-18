@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Institute;
 use App\Models\Job;
 use App\Models\Management;
 use App\Models\Qualification;
@@ -119,6 +120,7 @@ class TeacherController extends Controller
         $data['teacher'] = Teacher::find($id);
         $data['regions'] = Region::all();
         $data['managements'] = Management::where('region_code', $data['teacher']['region_code'])->get();
+        $data['institutes'] = Institute::where('management_code', $data['teacher']['management_code'])->get();
         $data['subjects'] = Subject::all();
         $data['qualifications'] = Qualification::where('type', $data['teacher']['qualification_type'])->get();
         $data['qualifications_type'] = Qualification::select('type')->groupBy('type')->get();
@@ -146,7 +148,8 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Teacher::find($id)->delete();
+        return redirect()->route('admin.teachers.index');
     }
 
     public function fetch_qualification_from_type(Request $request){
