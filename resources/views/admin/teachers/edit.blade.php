@@ -6,11 +6,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">أضافة معلم</h4>
+                            <h4 class="header-title">  تعديل معلم ({{  $data['teacher']['teacher_name'] }})  </h4>
                             <p class="sub-header">يجب الانتباه لجميع المدخلات</p>
-                            <form class="needs-validation" method="post" action="{{ route('admin.teachers.store') }}"
+                            <form class="needs-validation" method="post" action="{{ route('admin.teachers.update', $data['teacher']['id']) }}"
                                 novalidate>
                                 @csrf
+                                @method('put')
                                 <div class="row">
                                     <div class="search-loader d-none">
                                         <div class="la-ball-clip-rotate-multiple la-2x loader-spinner">
@@ -18,7 +19,7 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="validationCustom01" class="form-label">كود المعلم</label>
                                             <input type="number" class="form-control" id="validationCustom01"
@@ -297,7 +298,7 @@
                                                 name="another_subject_two_code" id="another_subject_two_code" readonly >
                                         </div>
 
-                                    </div> --}}
+                                    </div>
                                     <hr style="color: #cea120">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -491,17 +492,17 @@
                                             <label for="group_type" class="form-label"> المجموعة النوعية</label>
                                             <select class="form-control" id="group_type" name="group_type"
                                                 data-toggle="select2" required>
-                                                <option data-code="1">المجموعة النوعية لوظائف هيئة التعليم</option>
-                                                <option data-code="2">النوعية لوظائف التعليم والدعوة</option>
-                                                <option data-code="3">المجموعة النوعية للتعليم الازهرى والدعوة الاسلامية
+                                                <option data-code="1" @if ($data['teacher']['group_type_code'] == '1') selected @endif >المجموعة النوعية لوظائف هيئة التعليم</option>
+                                                <option data-code="2" @if ($data['teacher']['group_type_code'] == '2') selected @endif >النوعية لوظائف التعليم والدعوة</option>
+                                                <option data-code="3" @if ($data['teacher']['group_type_code'] == '3') selected @endif >المجموعة النوعية للتعليم الازهرى والدعوة الاسلامية
                                                 </option>
-                                                <option data-code="4">النوعية الفنية لوظائف التعليم الابتدائى</option>
-                                                <option data-code="7">التخصصية غير التعليمية</option>
-                                                <option data-code="10">النوعية لوظائف المكتبات والوثائق</option>
-                                                <option data-code="17">النوعية لوظائف الخدمات الاجتماعية</option>
-                                                <option data-code="18">النوعية الفنية لوظائف الخدمات الدينية</option>
-                                                <option data-code="19">المجموعة النوعية لوظائف الاعلام</option>
-                                                <option data-code="20">العقود للمعلم / الأخصائي المساعد</option>
+                                                <option data-code="4" @if ($data['teacher']['group_type_code'] == '4') selected @endif >النوعية الفنية لوظائف التعليم الابتدائى</option>
+                                                <option data-code="7" @if ($data['teacher']['group_type_code'] == '7') selected @endif >التخصصية غير التعليمية</option>
+                                                <option data-code="10" @if ($data['teacher']['group_type_code'] == '10') selected @endif >النوعية لوظائف المكتبات والوثائق</option>
+                                                <option data-code="17" @if ($data['teacher']['group_type_code'] == '17') selected @endif >النوعية لوظائف الخدمات الاجتماعية</option>
+                                                <option data-code="18" @if ($data['teacher']['group_type_code'] == '18') selected @endif >النوعية الفنية لوظائف الخدمات الدينية</option>
+                                                <option data-code="19" @if ($data['teacher']['group_type_code'] == '19') selected @endif >المجموعة النوعية لوظائف الاعلام</option>
+                                                <option data-code="20" @if ($data['teacher']['group_type_code'] == '20') selected @endif >العقود للمعلم / الأخصائي المساعد</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Required Field
@@ -525,7 +526,9 @@
                                             <select class="form-control" id="job_name" name="job_name"
                                                 data-toggle="select2" required>
                                                 @foreach ($data['jobs'] as $job)
-                                                    <option value="{{ $job->name }}" data-code="{{ $job->code }}">
+                                                    <option value="{{ $job->name }}"
+                                                        @if ($data['teacher']['job_name'] == $job->name) selected @endif
+                                                        data-code="{{ $job->code }}">
                                                         {{ $job->name }}</option>
                                                 @endforeach
                                             </select>
@@ -537,7 +540,8 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="job_code" class="form-label"> كود الوظيفة </label>
-                                            <input class="form-control" type="number" id="job_code" name="job_code"
+                                            <input class="form-control" type="number" id="job_code"
+                                            $data['teacher']['job_code'] name="job_code"
                                                 required>
                                             <div class="invalid-feedback">
                                                 Required Field

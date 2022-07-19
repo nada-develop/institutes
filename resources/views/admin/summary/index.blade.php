@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xl-3">
                                     <div class="p-2 text-center">
-                                        <i class="mdi mdi-cart-plus text-primary mdi-24px"></i>
+
                                         <h3><span data-plugin="counterup">{{ isset($data['managements_count']) ? $data['managements_count'] : $data['managements']->count()}}</span></h3>
                                         <p class="text-muted font-15 mb-0"> عدد الادارات </p>
                                     </div>
@@ -93,27 +93,21 @@
 
                                 <div class="col-sm-6 col-xl-3">
                                     <div class="p-2 text-center">
-                                        <i class="mdi mdi-currency-usd text-success mdi-24px"></i>
+
                                         <h3><span data-plugin="counterup">{{  isset($data['institutes_count']) ? $data['institutes_count'] : $data['institutes']->count() }}</span></h3>
                                         <p class="text-muted font-15 mb-0"> عدد المعاهد</p>
                                     </div>
                                 </div>
 
-                                {{-- <div class="col-sm-6 col-xl-3">
+                                 <div class="col-sm-6 col-xl-3">
                                     <div class="p-2 text-center">
-                                        <i class="mdi mdi-account-group text-danger mdi-24px"></i>
+
                                         <h3><span data-plugin="counterup">6521</span></h3>
-                                        <p class="text-muted font-15 mb-0">التخصصات</p>
+                                        <p class="text-muted font-15 mb-0">عدد المعلمين</p>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6 col-xl-3">
-                                    <div class="p-2 text-center">
-                                        <i class="mdi mdi-eye-outline text-blue mdi-24px"></i>
-                                        <h3><span data-plugin="counterup">325</span> </h3>
-                                        <p class="text-muted font-15 mb-0">المعلمين</p>
-                                    </div>
-                                </div> --}}
+
 
                             </div> <!-- end row -->
                         </div>

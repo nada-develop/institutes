@@ -26,7 +26,7 @@ class TeacherController extends Controller
     {
         abort_if(Gate::denies('teacher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $teachers = Teacher::paginate(env('PAGINATION_LENGTH', 5));
-        return view('admin.teachers.index',compact('teachers'));
+        return view('admin.teachers.index', compact('teachers'));
     }
 
     function fetch_data(Request $request)
@@ -52,8 +52,8 @@ class TeacherController extends Controller
                 }
                 if (strlen($searchContent)) {
                     $teachers = Teacher::where('teacher_name', 'like', '%' . $searchContent . '%')
-                    ->orWhere('teacher_code', 'like', '%' . $searchContent . '%')
-                    ->orWhere('institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        ->orWhere('teacher_code', 'like', '%' . $searchContent . '%')
+                        ->orWhere('institute', 'like', '%' . $searchContent . '%')->paginate($length);
                 } else {
                     $teachers = Teacher::paginate($length);
                 }
@@ -106,7 +106,7 @@ class TeacherController extends Controller
     public function show($id)
     {
         $teacher = Teacher::find($id);
-        return view('admin.teachers.show',compact('teacher'));
+        return view('admin.teachers.show', compact('teacher'));
     }
 
     /**
@@ -137,7 +137,15 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teacher = Teacher::find($id);
+        if ($request->gender == 'male')
+            $request['gender_code'] = 1;
+        else
+            $request['gender_code'] = 2;
+
+        $teacher->update($request->all());
+
+        return redirect()->route('admin.teachers.index');
     }
 
     /**
@@ -152,9 +160,9 @@ class TeacherController extends Controller
         return redirect()->route('admin.teachers.index');
     }
 
-    public function fetch_qualification_from_type(Request $request){
+    public function fetch_qualification_from_type(Request $request)
+    {
         $qualifications = Qualification::where('type', $request->qualification_type)->pluck('code', 'name');
         return json_decode($qualifications);
     }
-
 }

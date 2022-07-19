@@ -30,10 +30,10 @@ $currentIndex = $teachers->firstItem();
                             style="height: 29px;line-height: 10px;margin-left:10px !important;margin-right:10px !important;" href="{{ route('admin.teachers.show', $teacher->id) }}">
                                 <i class="fa fa-eye" ></i>
                                 عرض </a>
-                            {{--  <a class=" btn btn-warning my-1 mx-0"
+                            <a class=" btn btn-warning my-1 mx-0"
                             style="height: 29px" href="{{ route('admin.teachers.edit', $teacher->id) }}">
                                 <i class="fa fa-edit" ></i>
-                                تعديل </a>  --}}
+                                تعديل </a>
                                 <form action="{{ route('admin.teachers.destroy',$teacher->id) }}"
                                     onsubmit="return confirm('هل أنت متأكد من حذف  ({{ $teacher->teacher_name  }}) ؟' );"  method="POST">
                                     @method('delete')
