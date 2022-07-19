@@ -29,7 +29,11 @@ class SummaryController extends Controller
         $data['regions'] = Region::all();
         $data['managements'] =  Management::where('region_code', $request->region)->get();
         $data['institutes'] = Institute::where('management_code', $request->management)->get();
-        return view('admin.summary.index', compact('data'));
+        $data['teacher_count'] = Teacher::where('institute_code',$request->institute)
+        ->orWhere('another_institute_code',$request->institute)->count();
+        $teachers = Teacher::where('institute_code',$request->institute)
+        ->orWhere('another_institute_code',$request->institute)->paginate(env('PAGINATION_LENGTH', 5));
+        return view('admin.summary.index', compact('data','teachers'));
     }
     public function fetch_management_from_region(Request $request)
     {
