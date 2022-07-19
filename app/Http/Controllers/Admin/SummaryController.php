@@ -19,8 +19,6 @@ class SummaryController extends Controller
         abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $data = [];
         $data['regions'] = Region::all();
-        $data['managements_count'] =  Management::count();
-        $data['institutes_count'] = Institute::count();
         return view('admin.summary.index', compact('data'));
     }
     public function fetch_summary(Request $request)
