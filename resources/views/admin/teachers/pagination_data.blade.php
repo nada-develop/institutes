@@ -10,7 +10,8 @@ $currentIndex = $teachers->firstItem();
             <th> No.</th>
             <th> اسم المعلم </th>
             <th>كود المعلم</th>
-            <th>المعهد</th>
+            <th>المعهد الاساسى</th>
+            <th> المعهد المنتدب اليه</th>
             <th> خيارات</th>
         </tr>
     </thead>
@@ -23,6 +24,7 @@ $currentIndex = $teachers->firstItem();
                 <td>{{ $teacher->teacher_name }}</td>
                 <td>{{ $teacher->teacher_code }}</td>
                 <td>{{ $teacher->institute }}</td>
+                <td>{{ $teacher->another_institute }}</td>
                 <td>
                     <div class="service-option">
 

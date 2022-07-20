@@ -21,7 +21,7 @@
                                 data-toggle="select2" name="region" id="region" required>
                                 <option selected disabled>اختر المنطقة</option>
                                 @foreach ($data['regions'] as $region)
-                                    <option @if( request()->get('region') == $region->code) selected @endif  value="{{ $region->code }}">{{ $region->name }} </option>
+                                    <option @if( request()->get('region') == $region->code) selected @endif value="{{ $region->code }}">{{ $region->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -121,7 +121,8 @@
                                             <th> No.</th>
                                             <th> اسم المعلم </th>
                                             <th>كود المعلم</th>
-                                            <th>المعهد</th>
+                                            <th>المعهد الاساسى</th>
+                                            <th> المعهد المنتدب اليه</th>
                                             <th> خيارات</th>
                                         </tr>
                                     </thead>
@@ -134,6 +135,7 @@
                                                 <td>{{ $teacher->teacher_name }}</td>
                                                 <td>{{ $teacher->teacher_code }}</td>
                                                 <td>{{ $teacher->institute }}</td>
+                                                <td>{{ $teacher->another_institute }}</td>
                                                 <td>
                                                     <div class="service-option">
 
@@ -192,9 +194,9 @@
                     $('#management').find('option').remove();
                     if (response.length != 0) {
                         $('#management').append(`<option selected disabled> اختر الاداره </option>`);
-                        $.each(response, function(index, value) {
+                        $.each(response, function(name, code) {
                             $('#management').append(
-                                `<option value="${value}"> ${index}</option>`);
+                                `<option value="${code}"> ${name}</option>`);
                         });
                     }
                 },
@@ -202,6 +204,7 @@
 
 
         });
+
         $('#management').on('change', function() {
             var management_code = $(this).val();
             $('.search-loader').removeClass('d-none');
@@ -216,9 +219,9 @@
                     $('#institute').find('option').remove();
                     if (response.length != 0) {
                         $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
-                        $.each(response, function(index, value) {
+                        $.each(response, function(name, code) {
                             $('#institute').append(
-                                `<option value="${value}"> ${index}</option>`);
+                                `<option value="${code}"> ${name}</option>`);
                         });
                     }
                 },
@@ -226,6 +229,5 @@
 
 
         });
-
     </script>
 @endsection

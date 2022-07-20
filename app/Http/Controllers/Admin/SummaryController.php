@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SummaryController extends Controller
 {
+    // discuss
     public function index()
     {
         abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -21,6 +22,7 @@ class SummaryController extends Controller
         $data['regions'] = Region::all();
         return view('admin.summary.index', compact('data'));
     }
+
     public function fetch_summary(Request $request)
     {
         $data = [];
@@ -33,11 +35,15 @@ class SummaryController extends Controller
         ->orWhere('another_institute_code',$request->institute)->paginate(env('PAGINATION_LENGTH', 5));
         return view('admin.summary.index', compact('data','teachers'));
     }
+
+    // discuss
     public function fetch_management_from_region(Request $request)
     {
         $managements = Management::where('region_code', $request->region_code)->pluck('code', 'name');
         return json_decode($managements);
     }
+
+    // discuss
     public function fetch_institute_from_management(Request $request)
     {
         $institutes = Institute::where('management_code', $request->management_code)->pluck('code', 'name');
