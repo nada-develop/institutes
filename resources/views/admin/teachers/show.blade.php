@@ -107,6 +107,13 @@
                                             <div class="col-md-6">
                                                 <ul class="list-unstyled timeline-sm">
                                                     <li class="timeline-sm-item">
+                                                        <span class="mb-2 d-block">الكفاءة</span>
+                                                        <h5 class="mt-0 mb-1">
+                                                            {{ $teacher->efficiency }}
+                                                        </h5>
+                                                        <p class="mb-0">الكود : {{   $teacher->efficiency_code}}</p>
+                                                    </li>
+                                                    <li class="timeline-sm-item">
                                                         <span class="mb-2 d-block">الدرجة</span>
                                                         <h5 class="mt-0 mb-1">
                                                             {{ $teacher->degree }}

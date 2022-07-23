@@ -305,11 +305,29 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label for="validationCustom01" class="form-label"> كود الكفاءه </label>
-                                            <input type="text" class="form-control" id="validationCustom01"
-                                                name="efficiency_code" placeholder="كود الكفاءه  " required />
+                                            <label for="efficiency" class="form-label"> الكفاءة </label>
+                                            <select name="efficiency" id="efficiency" data-toggle="select2"
+                                                class="form-control" required>
+                                                <option data-code="P02">رياض أطفال</option>
+                                                <option data-code="P03">إبتدائى</option>
+                                                <option data-code="P04">إعدادى / ثانوى</option>
+                                                <option data-code="P67">أخصائى إجتماعى</option>
+                                            </select>
+
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="efficiency_code" class="form-label"> كود الكفاءه </label>
+                                            <input type="text" class="form-control" id="efficiency_code"
+                                                name="efficiency_code" readonly placeholder="كود الكفاءه  " required />
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -551,6 +569,8 @@
             $('#job_staff').trigger('change');
             $('#degree').trigger('change');
             $('#job_attitude').trigger('change');
+            $('#efficiency').trigger('change');
+
         });
         $('#region').on('change', function() {
             var region_code = $(this).find(":selected").data('code');
@@ -662,6 +682,10 @@
         $('#qualification_name').on('change', function() {
             $('#qualification_code').val($(this).find(":selected").data('code'));
         });
+        $('#efficiency').on('change', function() {
+            $('#efficiency_code').val($(this).find(":selected").data('code'));
+        });
+
         $('#group_type').on('change', function() {
             $('#group_type_code').val($(this).find(":selected").data('code'));
         });

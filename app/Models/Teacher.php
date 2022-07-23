@@ -50,6 +50,7 @@ class Teacher extends Model
         'job_name',
         'job_code',
         'efficiency_code',
+        'efficiency',
 
     ];
 }

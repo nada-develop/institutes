@@ -55,6 +55,7 @@ return new class extends Migration
             $table->date('qualification_date')->nullable();
             $table->string('job_name')->nullable();
             $table->bigInteger('job_code')->nullable();
+            $table->string('efficiency')->nullable();
             $table->string('efficiency_code')->nullable();
             $table->timestamps();
         });

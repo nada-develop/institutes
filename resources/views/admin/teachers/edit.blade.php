@@ -334,9 +334,26 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label for="validationCustom01" class="form-label"> كود الكفاءه </label>
-                                            <input type="text" class="form-control" id="validationCustom01"
-                                                name="efficiency_code" value="{{ $data['teacher']['efficiency_code'] }}" placeholder="كود الكفاءه  " required />
+                                            <label for="efficiency" class="form-label"> الكفاءة </label>
+                                            <select name="efficiency" id="efficiency" data-toggle="select2"
+                                                class="form-control" required>
+                                                <option data-code="P02"  @if ($data['teacher']['efficiency_code'] == 'P02') selected @endif >رياض أطفال</option>
+                                                <option data-code="P03"  @if ($data['teacher']['efficiency_code'] == 'P03') selected @endif >إبتدائى</option>
+                                                <option data-code="P04"  @if ($data['teacher']['efficiency_code'] == 'P04') selected @endif >إعدادى / ثانوى</option>
+                                                <option data-code="P67"  @if ($data['teacher']['efficiency_code'] == 'P67') selected @endif >أخصائى إجتماعى</option>
+                                            </select>
+
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="efficiency_code" class="form-label"> كود الكفاءه </label>
+                                            <input type="text" class="form-control" id="efficiency_code"
+                                                name="efficiency_code" readonly placeholder="كود الكفاءه  " required />
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -585,6 +602,8 @@
             $('#subject').trigger('change');
             $('#another_subject').trigger('change');
             $('#another_subject_two').trigger('change');
+            $('#efficiency').trigger('change');
+
         });
         $('#region').on('change', function() {
             var region_code = $(this).find(":selected").data('code');
@@ -713,6 +732,9 @@
         });
         $('#job_attitude').on('change', function() {
             $('#job_attitude_code').val($(this).find(":selected").data('code'));
+        });
+        $('#efficiency').on('change', function() {
+            $('#efficiency_code').val($(this).find(":selected").data('code'));
         });
     </script>
 @endsection
