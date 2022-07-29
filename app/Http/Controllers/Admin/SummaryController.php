@@ -111,6 +111,7 @@ class SummaryController extends Controller
         $data = [];
         $data['institutes'] = Institute::all();
         $data['subjects'] = Subject::all();
+        $teachers = [];
         if ($request->institute && $request->subject) {
             if ($request->institute == 'all' && $request->subject == 'all') {
                 $data['institute_selected'] = 'all';
@@ -127,11 +128,14 @@ class SummaryController extends Controller
             } elseif ($request->institute != 'all' && $request->subject != 'all') {
                 $data['teacher_count'] = Teacher::where('subject_code', $request->subject)
                 ->where('institute_code', $request->institute)->count();
+                    $teachers = Teacher::where('subject_code',$request->subject)
+                    ->where('institute_code',$request->institute)->get();
                 $data['institute_selected'] =Institute::where('code', $request->institute)->first();
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
             }
         }
-        return view('admin.summary.teacher_with_institutes', compact('data'));
+
+        return view('admin.summary.teacher_with_institutes', compact('data','teachers'));
     }
 
 

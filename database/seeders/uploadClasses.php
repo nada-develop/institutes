@@ -16,6 +16,7 @@ class uploadClasses extends Seeder
     public function run()
     {
 
+
 Institute::where('code','10105101')->first()->update(['class_numbers' => '6']);
 Institute::where('code','10105102')->first()->update(['class_numbers' => '13']);
 Institute::where('code','10105103')->first()->update(['class_numbers' => '24']);
