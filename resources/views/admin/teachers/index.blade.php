@@ -9,7 +9,16 @@
             </div>
         </div>
     @endcan
-
+    <form action="{{ route('admin.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group mb-4">
+            <div class="custom-file text-left">
+                <input type="file" name="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+                <button class="btn btn-primary">Import Teachers</button>
+            </div>
+        </div>
+    </form>
     <div class="card">
         <div class="card-header">
             قائمة المعلمين

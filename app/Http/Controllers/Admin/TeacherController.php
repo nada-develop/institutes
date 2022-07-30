@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ImportTeacher;
 use App\Models\Institute;
 use App\Models\Job;
 use App\Models\Management;
@@ -12,6 +13,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Gate;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -166,4 +168,11 @@ class TeacherController extends Controller
         $qualifications = Qualification::where('type', $request->qualification_type)->pluck('code', 'name');
         return json_decode($qualifications);
     }
+
+
+    public function import(Request $request){
+        Excel::import(new ImportTeacher,  request()->file('file'));
+        return redirect()->back();
+    }
+
 }

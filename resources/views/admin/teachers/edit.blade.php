@@ -96,7 +96,7 @@
                                                 @foreach ($data['qualifications'] as $qualification)
                                                 <option value="{{ $qualification->name }}"
                                                     data-code="{{ $qualification->code }}"
-                                                     @if ($data['teacher']['qualification_name'] == $qualification->name) selected @endif>
+                                                     @if ($data['teacher']['qualification_code'] == $qualification->code) selected @endif>
                                                     {{ $qualification->name }}</option>
                                             @endforeach
                                             </select>
@@ -109,7 +109,7 @@
                                         <div class="mb-3">
                                             <label for="qualification_code" class="form-label"> كود المؤهل </label>
                                             <input class="form-control" type="number" id="qualification_code" name="qualification_code"
-                                                readonly required>
+                                            value="{{  $data['teacher']['qualification_code'] }}"      readonly required>
                                             <div class="invalid-feedback">
                                                 Required Field
                                             </div>
@@ -226,7 +226,7 @@
                                                 data-toggle="select2" name="subject" id="subject" required>
                                                 @foreach ($data['subjects'] as $subject)
                                                     <option value="{{ $subject->name }}"
-                                                        @if ($data['teacher']['subject'] == $subject->name) selected @endif
+                                                        @if ($data['teacher']['subject_code'] == $subject->code) selected @endif
                                                         data-code="{{ $subject->code }}">{{ $subject->name }}
                                                     </option>
                                                 @endforeach
@@ -238,7 +238,7 @@
                                             <label for="" class="mb-1"> كود مادة التخصص</label>
                                             <input
                                                 class="form-control {{ $errors->has('subject_code') ? 'is-invalid' : '' }}"
-                                                name="subject_code" id="subject_code" readonly required>
+                                                name="subject_code"  value="{{  $data['teacher']['subject_code'] }}" id="subject_code" readonly required>
                                         </div>
                                     </div>
 
@@ -252,7 +252,7 @@
                                                 <option value="">اختر المادة</option>
                                                 @foreach ($data['subjects'] as $subject)
                                                     <option value="{{ $subject->name }}"
-                                                        @if ($data['teacher']['another_subject'] == $subject->name) selected @endif
+                                                        @if ($data['teacher']['another_subject_code'] == $subject->code) selected @endif
                                                         data-code="{{ $subject->code }}" >{{ $subject->name }}
                                                     </option>
                                                 @endforeach
@@ -265,7 +265,7 @@
                                             <label for="" class="mb-1"> كود مادة التخصص 1 </label>
                                             <input
                                                 class="form-control {{ $errors->has('another_subject_code') ? 'is-invalid' : '' }}"
-                                                name="another_subject_code" id="another_subject_code" readonly >
+                                                name="another_subject_code"  value="{{  $data['teacher']['another_subject_code'] }}" id="another_subject_code" readonly >
                                         </div>
 
                                     </div>
@@ -282,7 +282,7 @@
                                                 <option value="">اختر المادة</option>
                                                 @foreach ($data['subjects'] as $subject)
                                                     <option value="{{ $subject->name }}"
-                                                        @if ($data['teacher']['another_subject_two'] == $subject->name) selected @endif
+                                                        @if ($data['teacher']['another_subject_two_code'] == $subject->code) selected @endif
                                                         data-code="{{ $subject->code }}" >{{ $subject->name }}
                                                     </option>
                                                 @endforeach
@@ -295,7 +295,7 @@
                                             <label for="" class="mb-1"> كود مادة التخصص 2 </label>
                                             <input
                                                 class="form-control {{ $errors->has('another_subject_two_code') ? 'is-invalid' : '' }}"
-                                                name="another_subject_two_code" id="another_subject_two_code" readonly >
+                                                name="another_subject_two_code"  value="{{  $data['teacher']['another_subject_two_code'] }}" id="another_subject_two_code" readonly >
                                         </div>
 
                                     </div>
@@ -594,7 +594,7 @@
     <script>
         $(document).ready(function() {
             $('#job_name').trigger('change');
-            $('#qualification_name').trigger('change');
+           // $('#qualification_name').trigger('change');
             $('#group_type').trigger('change');
             $('#job_staff').trigger('change');
             $('#degree').trigger('change');
