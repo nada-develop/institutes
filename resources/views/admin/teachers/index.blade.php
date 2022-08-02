@@ -9,14 +9,14 @@
             </div>
         </div>
     @endcan
-    <form action="{{ route('admin.import') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.teacher.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-4">
-            <div class="custom-file text-left">
+            <div class="custom-file text-left import-export-excel">
                 <input type="file" name="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-                <button class="btn btn-primary">Import Teachers</button>
+                <button class="btn btn-primary">استراد ملف</button>
             </div>
+            <a class="btn btn-primary" href="{{route('admin.teacher.export')}}">تصدير ملف</a>
         </div>
     </form>
     <div class="card">

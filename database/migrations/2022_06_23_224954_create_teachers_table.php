@@ -31,6 +31,8 @@ return new class extends Migration
             $table->bigInteger('institute_code')->nullable();
             $table->string('another_institute')->nullable();
             $table->string('another_institute_code')->nullable();
+            $table->string('another_institute_two')->nullable();
+            $table->string('another_institute_two_code')->nullable();
             $table->string('subject')->nullable();
             $table->string('subject_code')->nullable();
             $table->string('another_subject')->nullable();

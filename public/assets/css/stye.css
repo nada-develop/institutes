@@ -59,3 +59,11 @@
     background-color: #ededed;
     opacity: 1;
 }
+.import-export-excel{
+    float: left;
+    margin-right: 11px;
+}
+.custom-file-input{
+    border: 1px solid #DDD;
+    padding: 5px;
+}

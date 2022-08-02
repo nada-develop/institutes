@@ -25,6 +25,8 @@ class Teacher extends Model
         'institute_code',
         'another_institute',
         'another_institute_code',
+        'another_institute_two',
+        'another_institute_two_code',
         'subject',
         'subject_code',
         'another_subject',

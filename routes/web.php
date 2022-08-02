@@ -46,8 +46,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('teachers', TeacherController::class);
     Route::get('teachers/pagination/fetch_data', [TeacherController::class, 'fetch_data'])->name('teacher.pagination.fetch_data');
     Route::get('fetch-qualification-from-type', [TeacherController::class, 'fetch_qualification_from_type'])->name('teacher.fetch_qualification_from_type');
-    Route::post('teacher/import',[TeacherController::class,'import'])->name('import');
-
+    Route::post('teacher/import',[TeacherController::class,'import'])->name('teacher.import');
+    Route::get('teacher/export', [TeacherController::class,'export'])->name('teacher.export');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

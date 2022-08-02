@@ -108,7 +108,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="validationCustom03" class="form-label"> تاريخ الحصول على المؤهل
@@ -179,7 +178,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
-                                            <label for="" class="mb-1">معهد أخر</label>
+                                            <label for="" class="mb-1">معهد 1</label>
                                             <select
                                                 class="form-control {{ $errors->has('another_institute') ? 'is-invalid' : '' }}"
                                                 data-toggle="select2" name="another_institute" id="another_institute">
@@ -188,10 +187,28 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
-                                            <label for="" class="mb-1"> كود المعهد الاخر</label>
+                                            <label for="" class="mb-1"> كود المعهد 1</label>
                                             <input
                                                 class="form-control {{ $errors->has('another_institute_code') ? 'is-invalid' : '' }}"
                                                 name="another_institute_code" id="another_institute_code" readonly
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label for="" class="mb-1">معهد 2</label>
+                                            <select
+                                                class="form-control {{ $errors->has('another_institute_two') ? 'is-invalid' : '' }}"
+                                                data-toggle="select2" name="another_institute_two" id="another_institute_two">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label for="" class="mb-1"> كود المعهد 2</label>
+                                            <input
+                                                class="form-control {{ $errors->has('another_institute_two_code') ? 'is-invalid' : '' }}"
+                                                name="another_institute_two_code" id="another_institute_two_code" readonly
                                                 >
                                         </div>
                                     </div>
@@ -216,7 +233,6 @@
                                                 name="subject_code" id="subject_code" readonly required>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
                                             <label for="" class="mb-1">مادة تخصص 1 </label>
@@ -242,9 +258,6 @@
                                         </div>
 
                                     </div>
-
-
-
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
                                             <label for="" class="mb-1">مادة تخصص 2 </label>
@@ -270,8 +283,6 @@
                                         </div>
 
                                     </div>
-
-
                                     <hr style="color: #cea120">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -574,6 +585,7 @@
         });
         $('#region').on('change', function() {
             var region_code = $(this).find(":selected").data('code');
+
             $('.search-loader').removeClass('d-none');
             $.ajax({
                 url: "/admin/fetch-management-from-region",
@@ -586,9 +598,11 @@
                     $('#management').find('option').remove();
                     $('#institute').find('option').remove();
                     $('#another_institute').find('option').remove();
+                    $('#another_institute_two').find('option').remove();
                     $('#management_code').val('');
                     $('#institute_code').val('');
                     $('#another_institute_code').val('');
+                    $('#another_institute_two_code').val('');
                     if (response.length != 0) {
                         $('#region_code').val(region_code);
                         $('#management').append(`<option selected disabled> اختر الاداره </option>`);
@@ -614,8 +628,10 @@
                     $('.search-loader').addClass('d-none');
                     $('#institute').find('option').remove();
                     $('#another_institute').find('option').remove();
+                    $('#another_institute_two').find('option').remove();
                     $('#institute_code').val('');
                     $('#another_institute_code').val('');
+                    $('#another_institute_two_code').val('');
                     if (response.length != 0) {
                         $('#management_code').val(management_code);
                         $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
@@ -630,13 +646,23 @@
                             $('#another_institute').append(
                                 `<option value="${index}" data-code="${value}"> ${index}</option>`);
                         });
+
+                        $('#another_institute_two').append(
+                            `<option value=""> اختر المعهد </option>`);
+                        $.each(response, function(index, value) {
+                            $('#another_institute_two').append(
+                                `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                        });
                     }
                 },
             });
 
         });
+
+
         $('#qualification_type').on('change', function() {
             var qualification_type = $(this).val();
+
              $('.search-loader').removeClass('d-none');
             $.ajax({
                 url: "/admin/fetch-qualification-from-type",
@@ -650,15 +676,17 @@
                      $('#qualification_name').find('option').remove();
                      if (response.length != 0) {
                          $('#qualification_name').append(`<option value="اختر من القائمة" data-code="0">اختر من القائمة</option>`);
-                         $.each(response, function(index, value) {
+                         $.each(response, function(name, code) {
                              $('#qualification_name').append(
-                                 `<option value="${index}" data-code="${value}"> ${index}</option>`);
+                                 `<option data-code="${code}" value="${name}" > ${name}</option>`);
                          });
                      }
-                     $('#qualification_name').trigger('change');
+                  $('#qualification_name').trigger('change');
                 },
             });
         });
+
+
         $('#institute').on('change', function() {
             var institute_code = $(this).find(":selected").data('code');
             $('#institute_code').val(institute_code);
@@ -666,6 +694,10 @@
         $('#another_institute').on('change', function() {
             var another_institute_code = $(this).find(":selected").data('code');
             $('#another_institute_code').val(another_institute_code);
+        });
+        $('#another_institute_two').on('change', function() {
+            var another_institute_two_code = $(this).find(":selected").data('code');
+            $('#another_institute_two_code').val(another_institute_two_code);
         });
         $('#subject').on('change', function() {
             $('#subject_code').val($(this).find(":selected").data('code'));

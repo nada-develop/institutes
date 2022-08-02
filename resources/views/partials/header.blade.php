@@ -59,6 +59,11 @@
         h1,h2,h3,h4,h5,h6,p,a span:first-of-type,body{
             font-family: 'Cairo', sans-serif !important;
         }
+        .import-export-excel{
+            float: right !important;
+            margin-left: 11px !important;
+        }
+
     </style>
     @else
 

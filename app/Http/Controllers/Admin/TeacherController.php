@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\TeacherExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ImportTeacher;
 use App\Models\Institute;
@@ -76,8 +77,8 @@ class TeacherController extends Controller
         $data = [];
         $data['regions'] = Region::all();
         $data['subjects'] = Subject::all();
-        $data['qualifications'] = Qualification::all();
-        $data['qualifications_type'] = Qualification::select('type')->groupBy('type')->get();
+        // $data['qualifications'] = Qualification::all();
+        $data['qualifications_type'] = Qualification::select('type')->distinct('type')->get();
         $data['jobs'] = Job::all();
         return view('admin.teachers.create', compact('data'));
     }
@@ -90,6 +91,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->gender == 'male')
             $request['gender_code'] = 1;
         else
@@ -165,14 +167,21 @@ class TeacherController extends Controller
 
     public function fetch_qualification_from_type(Request $request)
     {
+
         $qualifications = Qualification::where('type', $request->qualification_type)->pluck('code', 'name');
         return json_decode($qualifications);
     }
 
 
-    public function import(Request $request){
+    public function import(Request $request)
+    {
         Excel::import(new ImportTeacher,  request()->file('file'));
         return redirect()->back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new TeacherExport, 'teacher.xlsx');
     }
 
 }
