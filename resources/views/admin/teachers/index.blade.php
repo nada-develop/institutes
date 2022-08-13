@@ -14,7 +14,7 @@
         <div class="form-group mb-4">
             <div class="custom-file text-left import-export-excel">
                 <input type="file" name="file" class="custom-file-input" id="customFile">
-                <button class="btn btn-primary">استراد ملف</button>
+                <button class="btn btn-primary">استيراد ملف</button>
             </div>
             <a class="btn btn-primary" href="{{route('admin.teacher.export')}}">تصدير ملف</a>
         </div>

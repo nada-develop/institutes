@@ -55,7 +55,7 @@ class TeacherController extends Controller
                 }
                 if (strlen($searchContent)) {
                     $teachers = Teacher::where('teacher_name', 'like', '%' . $searchContent . '%')
-                        ->orWhere('teacher_code', 'like', '%' . $searchContent . '%')
+                        ->orWhere('record_number', 'like', '%' . $searchContent . '%')
                         ->orWhere('institute', 'like', '%' . $searchContent . '%')
                         ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
                 } else {
