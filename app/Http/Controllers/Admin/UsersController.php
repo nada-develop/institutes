@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Region;
 use App\Models\Role;
 use App\Models\User;
 use Gate;
@@ -28,8 +29,9 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::pluck('title', 'id');
-
-        return view('admin.users.create', compact('roles'));
+        $data = [];
+        $data['regions'] = Region::all();
+        return view('admin.users.create', compact('roles','data'));
     }
 
     public function store(StoreUserRequest $request)
