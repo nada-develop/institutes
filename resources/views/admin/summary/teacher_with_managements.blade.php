@@ -44,6 +44,12 @@
                         <button class="btn btn-primary mt-3" type="submit">
                             بحث
                         </button>
+                        @if(isset($data['management_selected']))
+
+                        <a href="{{ URL('/admin/print-teacher-with-management?management='.$data['management_selected']->code.'&subject='.(isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : 'all') : 'all')) }}" class="btn btn-primary mt-3" >
+                            طباعة
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -80,7 +86,7 @@
                                                 </table>
                                             </div>
                                             @else
-                                                <h5 >من فضلك اختر المنطقة</h5>
+                                                <h5 >من فضلك اختر الادارة</h5>
                                             @endif
                                         </div>
                                     </div> <!-- end card -->

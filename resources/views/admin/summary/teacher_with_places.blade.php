@@ -44,6 +44,12 @@
                         <button class="btn btn-primary mt-3" type="submit">
                             بحث
                         </button>
+                        @if(isset($data['region_selected']))
+
+                        <a href="{{ URL('/admin/print-teacher-with-places?region='.(isset($data['region_selected']) ? ($data['region_selected'] != 'all' ? $data['region_selected']->code : 'all') : 'all').'&subject='.(isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : 'all') : 'all')) }}" class="btn btn-primary mt-3" >
+                            طباعة
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>

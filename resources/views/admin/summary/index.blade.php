@@ -59,6 +59,11 @@
                         <button class="btn btn-primary mt-3" type="submit">
                             بحث
                         </button>
+                        @if(request()->get('region'))
+                        <a href="{{ URL('/admin/print-fetch-summary?region='.request()->get('region').'&management='.request()->get('management').'&institute='.request()->get('institute')) }}" class="btn btn-primary mt-3" >
+                            طباعة
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -96,9 +101,9 @@
 
 
 
-                            </div> <!-- end row -->
+                            </div>
                         </div>
-                    </div> <!-- end card-->
+                    </div>
                 </div>
             </div>
 
@@ -129,7 +134,7 @@
 
                                     {{-- Table body --}}
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
+                                        @foreach ($data['teachers'] as $teacher)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $teacher->teacher_name }}</td>

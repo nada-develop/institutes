@@ -15,6 +15,11 @@ class CreateUsersTable extends Migration
             $table->datetime('email_verified_at')->nullable();
             $table->string('password');
             $table->string('remember_token')->nullable();
+            $table->unsignedBigInteger('region_code')->nullable();
+            $table->unsignedBigInteger('management_code')->nullable();
+            $table->unsignedBigInteger('institute_code')->nullable();
+            $table->integer('active_management')->default(0);
+            $table->integer('active_region')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

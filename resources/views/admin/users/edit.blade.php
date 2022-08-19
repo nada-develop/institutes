@@ -50,6 +50,63 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.roles_helper') }}</span>
             </div>
+
+            <div class="search-loader d-none">
+                <div  class="la-ball-clip-rotate-multiple la-2x loader-spinner">
+                  <div></div>
+                  <div></div>
+              </div>
+            </div>
+            <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group mb-2">
+                    <label for="" class="mb-1">المناطق</label>
+                    <select class="form-control {{ $errors->has('region') ? 'is-invalid' : '' }}"
+                        data-toggle="select2" name="region" id="region" required>
+                        <option selected disabled>اختر المنطقة</option>
+                        @foreach ($data['regions'] as $region)
+                            <option @if( $user->region_code == $region->code) selected @endif value="{{ $region->code }}">{{ $region->name }} </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group mb-2">
+                    <label for="" class="mb-1">الادارات</label>
+                    <select class="form-control {{ $errors->has('management') ? 'is-invalid' : '' }}"
+                        data-toggle="select2" name="management" id="management" required>
+                        @if (isset($data['managements']))
+                        <option selected disabled> اختر الاداره </option>
+                            @foreach ($data['managements'] as $management)
+                                <option @if( $user->management_code == $management->code) selected @endif value="{{ $management->code }}">{{ $management->name }} </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group mb-2">
+                    <label for="" class="mb-1">المعاهد</label>
+                    <select class="form-control {{ $errors->has('institute') ? 'is-invalid' : '' }}"
+                        data-toggle="select2" name="institute" id="institute" required>
+                        @if (isset($data['institutes']))
+                        <option selected disabled> اختر المعهد </option>
+                        @foreach ($data['institutes'] as $institute)
+                            <option @if($user->institute_code == $institute->code) selected @endif value="{{ $institute->code }}">{{ $institute->name }} </option>
+                        @endforeach
+                    @endif
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                  <input type="radio" id="management" name="another_roles" value="management" @if($user->active_management == 1) checked @endif>
+                  <label for="management">الادراة</label><br>
+                  <input type="radio" id="region" name="another_roles" value="region"  @if($user->active_region == 1) checked @endif>
+                  <label for="region">المنطقة</label>
+            </div>
+            </div>
+
             <div class="form-group mt-2">
                 <button class="btn btn-success" type="submit">
                     {{ trans('global.save') }}
@@ -74,4 +131,56 @@
             $('#roles').select2('destroy').find('option').prop('selected', false).end().select2();
         });
     </script>
+    <script>
+        $('#region').on('change', function() {
+            var region_code = $(this).val();
+            $('.search-loader').removeClass('d-none');
+            $.ajax({
+                url: "/admin/fetch-management-from-region",
+                type: "GET",
+                data: {
+                    region_code: region_code
+                },
+                success: function(response) {
+                    $('.search-loader').addClass('d-none');
+                    $('#management').find('option').remove();
+                    if (response.length != 0) {
+                        $('#management').append(`<option selected disabled> اختر الاداره </option>`);
+                        $.each(response, function(name, code) {
+                            $('#management').append(
+                                `<option value="${code}"> ${name}</option>`);
+                        });
+                    }
+                },
+            });
+
+
+        });
+
+        $('#management').on('change', function() {
+            var management_code = $(this).val();
+            $('.search-loader').removeClass('d-none');
+            $.ajax({
+                url: "/admin/fetch-institute-from-management",
+                type: "GET",
+                data: {
+                    management_code: management_code
+                },
+                success: function(response) {
+                    $('.search-loader').addClass('d-none');
+                    $('#institute').find('option').remove();
+                    if (response.length != 0) {
+                        $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
+                        $.each(response, function(name, code) {
+                            $('#institute').append(
+                                `<option value="${code}"> ${name}</option>`);
+                        });
+                    }
+                },
+            });
+
+
+        });
+    </script>
+
 @endsection

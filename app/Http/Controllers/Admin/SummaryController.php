@@ -23,7 +23,7 @@ class SummaryController extends Controller
         return view('admin.summary.index', compact('data'));
     }
 
-    public function fetch_summary(Request $request)
+    public function get_summary(Request $request)
     {
         $data = [];
         $data['regions'] = Region::all();
@@ -31,27 +31,36 @@ class SummaryController extends Controller
         $data['institutes'] = Institute::where('management_code', $request->management)->get();
         $data['teacher_count'] = Teacher::where('institute_code',$request->institute)
         ->orWhere('another_institute_code',$request->institute)->count();
-        $teachers = Teacher::where('institute_code',$request->institute)
-        ->orWhere('another_institute_code',$request->institute)->paginate(env('PAGINATION_LENGTH', 5));
-        return view('admin.summary.index', compact('data','teachers'));
+        $data['teachers'] = Teacher::where('institute_code',$request->institute)
+        ->orWhere('another_institute_code',$request->institute)->get();
+        return $data;
+    }
+    public function fetch_summary(Request $request)
+    {
+        $data = self::get_summary($request);
+        return view('admin.summary.index', compact('data'));
+    }
+    public function print_fetch_summary(Request $request)
+    {
+        $data = self::get_summary($request);
+        return view('admin.print.index', compact('data'));
     }
 
-    // discuss
+   
     public function fetch_management_from_region(Request $request)
     {
         $managements = Management::where('region_code', $request->region_code)->pluck('code', 'name');
         return json_decode($managements);
     }
-
-    // discuss
     public function fetch_institute_from_management(Request $request)
     {
         $institutes = Institute::where('management_code', $request->management_code)->pluck('code', 'name');
         return json_decode($institutes);
     }
-    public function teacher_with_places(Request $request)
-    {
-        abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+
+    // teacher_with_places
+    public function get_teacher_from_places(Request $request){
         $data = [];
         $data['regions'] = Region::all();
         $data['subjects'] = Subject::all();
@@ -75,11 +84,22 @@ class SummaryController extends Controller
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
             }
         }
-        return view('admin.summary.teacher_with_places', compact('data'));
+        return $data;
     }
-    public function teacher_with_managements(Request $request)
+    public function teacher_with_places(Request $request)
     {
         abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $data = self::get_teacher_from_places($request);
+        return view('admin.summary.teacher_with_places', compact('data'));
+    }
+    public function print_teacher_with_places(Request $request){
+        $data = self::get_teacher_from_places($request);
+        return view('admin.print.teacher_with_places',compact('data'));
+    }
+
+    // teacher_with_managements
+    public function get_teacher_with_managements(Request $request)
+    {
         $data = [];
         $data['managements'] = Management::all();
         $data['subjects'] = Subject::all();
@@ -103,39 +123,55 @@ class SummaryController extends Controller
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
             }
         }
-        return view('admin.summary.teacher_with_managements', compact('data'));
+        return $data;
     }
-    public function teacher_with_institutes(Request $request)
+    public function teacher_with_managements(Request $request)
     {
         abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $data = [];
+        $data = self::get_teacher_with_managements($request);
+        return view('admin.summary.teacher_with_managements', compact('data'));
+    }
+    public function print_teacher_with_managements(Request $request)
+    {
+        $data = self::get_teacher_with_managements($request);
+        return view('admin.print.teacher_with_managements',compact('data'));
+    }
+
+
+    public function get_teacher_with_institutes(Request $request)
+    {
+         $data = [];
         $data['institutes'] = Institute::all();
         $data['subjects'] = Subject::all();
-        $teachers = [];
+
         if ($request->institute && $request->subject) {
-            if ($request->institute == 'all' && $request->subject == 'all') {
-                $data['institute_selected'] = 'all';
-                $data['subject_selected'] = 'all';
-                $data['teacher_count'] = Teacher::count();
-            } elseif ($request->institute != 'all' && $request->subject == 'all') {
+            if ($request->institute != 'all' && $request->subject == 'all') {
                 $data['teacher_count'] = Teacher::where('institute_code', $request->institute)->count();
                 $data['institute_selected'] = Institute::where('code', $request->institute)->first();
                 $data['subject_selected'] = 'all';
-            } elseif ($request->institute == 'all' && $request->subject != 'all') {
-                $data['teacher_count'] = Teacher::where('subject_code', $request->subject)->count();
-                $data['institute_selected'] = 'all';
-                $data['subject_selected'] = Subject::where('code', $request->subject)->first();
             } elseif ($request->institute != 'all' && $request->subject != 'all') {
                 $data['teacher_count'] = Teacher::where('subject_code', $request->subject)
                 ->where('institute_code', $request->institute)->count();
-                    $teachers = Teacher::where('subject_code',$request->subject)
-                    ->where('institute_code',$request->institute)->get();
+                $data['teachers'] = Teacher::where('subject_code',$request->subject)
+                ->where('institute_code',$request->institute)->get();
                 $data['institute_selected'] =Institute::where('code', $request->institute)->first();
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
             }
         }
 
-        return view('admin.summary.teacher_with_institutes', compact('data','teachers'));
+        return $data;
+    }
+    public function teacher_with_institutes(Request $request)
+    {
+        abort_if(Gate::denies('summary_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $data = self::get_teacher_with_institutes($request);
+        return view('admin.summary.teacher_with_institutes', compact('data'));
+    }
+
+    public function print_teacher_with_institutes(Request $request)
+    {
+        $data = self::get_teacher_with_institutes($request);
+        return view('admin.print.teacher_with_institutes',compact('data'));
     }
 
 

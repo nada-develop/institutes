@@ -44,6 +44,12 @@
                         <button class="btn btn-primary mt-3" type="submit">
                             بحث
                         </button>
+                        @if(isset($data['institute_selected']))
+
+                        <a href="{{ URL('/admin/print-teacher-with-institutes?institute='.$data['institute_selected']->code.'&subject='.(isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : 'all') : 'all') ) }}" class="btn btn-primary mt-3" >
+                            طباعة
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -82,7 +88,7 @@
                                                 </table>
                                             </div>
                                             @else
-                                                <h5 >من فضلك اختر المنطقة</h5>
+                                                <h5 >من فضلك اختر المعهد</h5>
                                             @endif
                                         </div>
                                     </div> <!-- end card -->
@@ -93,7 +99,7 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div>
-            @if(count($teachers))
+            @if(isset($data['teachers']))
             <div class="row">
                 <div class="card">
                     <div class="card-header">
@@ -120,7 +126,7 @@
 
                                     {{-- Table body --}}
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
+                                        @foreach ($data['teachers'] as $teacher)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $teacher->teacher_name }}</td>
