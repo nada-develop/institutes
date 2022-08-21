@@ -97,6 +97,86 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div>
+            @if(isset($data['teachers']))
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        قائمة المعلمين
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                            {{-- Table length filter --}}
+                            @include('partials.pagination_data_filter')
+
+                            {{-- Table content --}}
+                            <div id="table-data" class="table-responsive">
+                                @include('admin.summary.teacher_with_places_data', ['region' => request()->get('region') ,'subject'=> request()->get('subject')])
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--  <div class="card-body">
+                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+
+                            <div id="table-data" class="table-responsive">
+
+                                <table id="basic-datatable" class="table dt-responsive nowrap w-100 table-striped">
+
+                                    <thead>
+                                        <tr>
+                                            <th> No.</th>
+                                            <th> اسم المعلم </th>
+                                            <th>كود المعلم</th>
+                                            <th>المعهد الاساسى</th>
+                                            <th> المعهد المنتدب اليه</th>
+                                            <th> خيارات</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach ($data['teachers'] as $teacher)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $teacher->teacher_name }}</td>
+                                                <td>{{ $teacher->teacher_code }}</td>
+                                                <td>{{ $teacher->institute }}</td>
+                                                <td>{{ $teacher->another_institute }}</td>
+                                                <td>
+                                                    <div class="service-option">
+
+                                                            <a class=" btn btn-primary my-1 mx-0 "
+                                                            style="height: 29px;line-height: 10px;margin-left:10px !important;margin-right:10px !important;" href="{{ route('admin.teachers.show', $teacher->id) }}">
+                                                                <i class="fa fa-eye" ></i>
+                                                                عرض </a>
+                                                            <a class=" btn btn-warning my-1 mx-0"
+                                                            style="height: 29px" href="{{ route('admin.teachers.edit', $teacher->id) }}">
+                                                                <i class="fa fa-edit" ></i>
+                                                                تعديل </a>
+                                                                <form action="{{ route('admin.teachers.destroy',$teacher->id) }}"
+                                                                    onsubmit="return confirm('هل أنت متأكد من حذف  ({{ $teacher->teacher_name  }}) ؟' );"  method="POST">
+                                                                    @method('delete')
+                                                                    @csrf
+                                                                    <button type="submit" class="btn  btn-danger  my-1 mx-0" >
+                                                                        <i class="fa fa-trash"></i>
+                                                                    حذف
+                                                                    </button>
+                                                            </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>  --}}
+
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 
@@ -105,5 +185,11 @@
 @endsection
 @section('custom-script')
     <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+    <script>
+        const fetchDataURL =
+            "{{ route('admin.teacher_with_places.pagination.fetch_data') }}", // This valriable used in pagination_script
+            pageType = 'index';
 
+        @include('partials.pagination_script')
+    </script>
 @endsection

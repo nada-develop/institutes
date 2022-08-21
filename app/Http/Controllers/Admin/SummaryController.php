@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SummaryController extends Controller
 {
+ 
     // discuss
     public function index()
     {
@@ -35,6 +36,7 @@ class SummaryController extends Controller
         ->orWhere('another_institute_code',$request->institute)->get();
         return $data;
     }
+
     public function fetch_summary(Request $request)
     {
         $data = self::get_summary($request);
@@ -46,7 +48,7 @@ class SummaryController extends Controller
         return view('admin.print.index', compact('data'));
     }
 
-   
+
     public function fetch_management_from_region(Request $request)
     {
         $managements = Management::where('region_code', $request->region_code)->pluck('code', 'name');
@@ -69,22 +71,97 @@ class SummaryController extends Controller
                 $data['region_selected'] = 'all';
                 $data['subject_selected'] = 'all';
                 $data['teacher_count'] = Teacher::count();
+                $data['teachers'] = Teacher::paginate(env('PAGINATION_LENGTH', 5));
             } elseif ($request->region != 'all' && $request->subject == 'all') {
                 $data['teacher_count'] = Teacher::where('region_code', $request->region)->count();
                 $data['region_selected'] = Region::where('code', $request->region)->first();
                 $data['subject_selected'] = 'all';
+                $data['teachers'] = Teacher::where('region_code', $request->region)->paginate(env('PAGINATION_LENGTH', 5));
             } elseif ($request->region == 'all' && $request->subject != 'all') {
                 $data['teacher_count'] = Teacher::where('subject_code', $request->subject)->count();
                 $data['region_selected'] = 'all';
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
+                $data['teachers'] = Teacher::where('subject_code', $request->subject)->paginate(env('PAGINATION_LENGTH', 5));
             } elseif ($request->region != 'all' && $request->subject != 'all') {
                 $data['teacher_count'] = Teacher::where('subject_code', $request->subject)
                 ->where('region_code', $request->region)->count();
                 $data['region_selected'] =Region::where('code', $request->region)->first();
                 $data['subject_selected'] = Subject::where('code', $request->subject)->first();
+                $data['teachers'] = Teacher::where('subject_code', $request->subject)
+                ->where('region_code', $request->region)->paginate(env('PAGINATION_LENGTH', 5));
+
             }
         }
         return $data;
+    }
+    public function fetch_teacher_with_places(Request $request){
+        $length = request()->length ?? env('PAGINATION_LENGTH', 5);
+        $searchContent = request()->search_content ?? '';
+        $pageType = request()->page_type;
+        $teachers = [];
+        if ($request->ajax()) {
+                if ($length == -1) {
+                    $length = Teacher::count();
+                }
+                if (strlen($searchContent)) {
+
+                    if ($request->region && $request->subject) {
+                        if ($request->region == 'all' && $request->subject == 'all') {
+                            $data['teachers'] = Teacher::where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region != 'all' && $request->subject == 'all') {
+                            $data['teachers'] = Teacher::where('region_code', $request->region)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region == 'all' && $request->subject != 'all') {
+                            $data['teachers'] = Teacher::where('subject_code', $request->subject)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region != 'all' && $request->subject != 'all') {
+                            $data['teachers'] = Teacher::where('subject_code', $request->subject)
+                            ->where('region_code', $request->region)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+
+                        }
+                    }
+
+                } else {
+                    if ($request->region && $request->subject) {
+                        if ($request->region == 'all' && $request->subject == 'all') {
+                            $data['teachers'] = Teacher::where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region != 'all' && $request->subject == 'all') {
+                            $data['teachers'] = Teacher::where('region_code', $request->region)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region == 'all' && $request->subject != 'all') {
+                            $data['teachers'] = Teacher::where('subject_code', $request->subject)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+                        } elseif ($request->region != 'all' && $request->subject != 'all') {
+                            $data['teachers'] = Teacher::where('subject_code', $request->subject)
+                            ->where('region_code', $request->region)->where('region_code', auth()->user()->region_code)->where('teacher_name', 'like', '%' . $searchContent . '%')
+                            ->orWhere('record_number', 'like', '%' . $searchContent . '%')
+                            ->orWhere('institute', 'like', '%' . $searchContent . '%')
+                            ->orWhere('another_institute', 'like', '%' . $searchContent . '%')->paginate($length);
+
+                        }
+                    }
+
+                }
+
+            return view('admin.teachers.pagination_data', compact('teachers', 'pageType'))->render();
+        }
     }
     public function teacher_with_places(Request $request)
     {

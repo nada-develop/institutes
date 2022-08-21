@@ -38,6 +38,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('teacher-with-places/{region?}/{subject?}',[SummaryController::class,'teacher_with_places'])->name('teacher_with_places');
     Route::get('print-teacher-with-places/{region?}/{subject?}',[SummaryController::class,'print_teacher_with_places'])->name('print_teacher_with_places');
+    Route::get('teachers-with-places/pagination/fetch_data', [SummaryController::class, 'fetch_teacher_with_places'])->name('teacher_with_places.pagination.fetch_data');
+
+
     Route::get('teacher-with-management/{management?}/{subject?}',[SummaryController::class,'teacher_with_managements'])->name('teacher_with_managements');
     Route::get('print-teacher-with-management/{management?}/{subject?}',[SummaryController::class,'print_teacher_with_managements'])->name('print_teacher_with_managements');
     Route::get('teacher-with-institutes/{institute?}/{subject?}',[SummaryController::class,'teacher_with_institutes'])->name('teacher_with_institutes');
