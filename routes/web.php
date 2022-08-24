@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SummaryController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Models\Teacher;
 
 Route::redirect('/', '/login');
 Route::get('/home', function () {
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // teacher
     Route::resource('teachers', TeacherController::class);
+    Route::get('print-teacher/{id}',[TeacherController::class,'print_teacher'])->name('teacher.print');
     Route::get('teachers/pagination/fetch_data', [TeacherController::class, 'fetch_data'])->name('teacher.pagination.fetch_data');
     Route::get('fetch-qualification-from-type', [TeacherController::class, 'fetch_qualification_from_type'])->name('teacher.fetch_qualification_from_type');
     Route::post('teacher/import',[TeacherController::class,'import'])->name('teacher.import');

@@ -232,4 +232,8 @@ class TeacherController extends Controller
     {
         return Excel::download(new TeacherExport, 'teacher.xlsx');
     }
+    public function print_teacher(Request $request,$id){
+        $teacher = Teacher::find($id);
+        return view('admin.print.profile', compact('teacher'));
+    }
 }
