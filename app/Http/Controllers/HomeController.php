@@ -27,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+   
         $regionCount = Region::count();
         $instituteCount = Institute::count();
         $managementCount = Management::count();

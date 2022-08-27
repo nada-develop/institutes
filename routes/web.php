@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SummaryController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Models\Teacher;
@@ -17,6 +18,8 @@ Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('fetch-summary-from-region',[HomeController::class,'fetch_summary_from_region'])->name('summary.fetch_summary_from_region');
+    Route::get('fetch-summary-from-management',[HomeController::class,'fetch_summary_from_management'])->name('summary.fetch_summary_from_management');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');

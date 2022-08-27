@@ -108,6 +108,9 @@
                          <span></span>
                      </div>
                  </a>
+                 @if(request()->is('*admin') || request()->is('*admin/'))
+                 <h4 class="page-title text-white" style="line-height: 47px;"> الصفحة الرئيسية</h4>
+                 @endif
                  <!-- End mobile menu toggle-->
              </li>
 

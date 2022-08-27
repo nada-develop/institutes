@@ -67,3 +67,15 @@
     border: 1px solid #DDD;
     padding: 5px;
 }
+
+
+.inbox-widget .inbox-item .inbox-item-date
+{
+    font-size: 14px !important;
+    background: #cea120;
+    color: #FFF;
+    width: 30px !important;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+}
