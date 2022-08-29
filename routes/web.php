@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FullSummaryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SummaryController;
 use App\Http\Controllers\Admin\TeacherController;
@@ -18,8 +19,7 @@ Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('fetch-summary-from-region',[HomeController::class,'fetch_summary_from_region'])->name('summary.fetch_summary_from_region');
-    Route::get('fetch-summary-from-management',[HomeController::class,'fetch_summary_from_management'])->name('summary.fetch_summary_from_management');
+
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -35,8 +35,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+// full summary
+Route::get('summary',[FullSummaryController::class,'index'])->name('summary');
+Route::get('fetch-summary-from-region',[FullSummaryController::class,'fetch_summary_from_region'])->name('summary.fetch_summary_from_region');
+Route::get('fetch-summary-from-management',[FullSummaryController::class,'fetch_summary_from_management'])->name('summary.fetch_summary_from_management');
+Route::get('fetch-summary-from-institute',[FullSummaryController::class,'fetch_summary_from_institute'])->name('summary.fetch_summary_from_institute');
+
     //  summary
-    Route::get('summary',[SummaryController::class,'index'])->name('summary');
     Route::get('fetch-summary/{region?}/{management?}/{institute?}',[SummaryController::class,'fetch_summary'])->name('summary.fetch_summary');
     Route::get('print-fetch-summary/{region?}/{management?}/{institute?}',[SummaryController::class,'print_fetch_summary'])->name('summary.print_fetch_summary');
 

@@ -4,7 +4,7 @@
 
         <div class="container-fluid">
 
-            <div class="row">
+            {{--  <div class="row">
                 <form action="{{ route('admin.summary.fetch_summary') }}" method="get" class="mb-0">
                     <div class="container p-2 mt-2">
                         <div class="row">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>  --}}
             <div class="row">
                 <div class="col-md-6 col-xl-3">
                     <div class="widget-rounded-circle card">
@@ -148,15 +148,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- INBOX -->
+            {{--  <div class="row">
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -179,7 +178,7 @@
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -202,7 +201,7 @@
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -225,7 +224,7 @@
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -248,7 +247,7 @@
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -271,7 +270,30 @@
 
                             <h4 class="header-title mb-3">التخصصات</h4>
 
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 407px;overflow: auto">
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
+                                @foreach ($teachers1 as $subject => $total)
+                                <div class="inbox-item">
+                                            @if($subject =="")
+                                            <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
+                                            @else
+                                            <p class="inbox-item-author" style="width:80%">{{ $subject }}</p>
+                                            @endif
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        {{ $total }}
+                                    </p>
+                                </div>
+                                @endforeach
+                            </div> <!-- end inbox-widget -->
+                        </div>
+                    </div> <!-- end card -->
+                </div>
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="header-title mb-3">التخصصات</h4>
+
+                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
                                 @foreach ($teachers1 as $subject => $total)
                                 <div class="inbox-item">
                                             @if($subject =="")
@@ -289,7 +311,9 @@
                     </div> <!-- end card -->
                 </div>
 
-            </div>
+
+            </div>  --}}
+
 
         </div>
 
