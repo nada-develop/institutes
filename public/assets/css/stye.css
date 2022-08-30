@@ -1,7 +1,35 @@
 .navbar-custom
 {
     background: #cea120 !important;
+    height: 60px !important;
 
+}
+.left-side-menu{
+    top: 60px ;
+}
+.content-page{
+    margin-top: 60px;
+}
+.logo-box {
+    height: 60px;
+}
+
+element.style {
+}
+.navbar-custom .dropdown .nav-link.show {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.navbar-custom .topnav-menu .nav-link {
+    line-height: 60px;
+    max-height: 60px;
+}
+.navbar-custom .button-menu-mobile {
+
+    height: 60px;
+    line-height: 60px;
+}
+.logo-box .logo {
+    padding-top: 20px;
 }
 #sidebar-menu>ul>li>a , #sidebar-menu .menu-title,.nav-second-level li a
 {
