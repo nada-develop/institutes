@@ -85,12 +85,25 @@
     padding-top: 5px;
 }
 .summary-card .header-title {
+    /* border-bottom: 1px solid #DDD;
+    margin: 0;
+    margin-bottom: 0 !important;
+    padding: 10px; */
     border-bottom: 1px solid #DDD;
     margin: 0;
     margin-bottom: 0 !important;
-    padding: 10px;
+    display: flex;
+    height: 40px;
+    width: 100%;
+    justify-content: space-between;
 }
-
+.summary-card .header-title h4{
+    font-size: 15px;
+}
+.summary-card .header-title input{
+    width: 58%;
+    height: 35px;
+}
 .summary-card .inbox-widget{
     max-height: 211px;height: 211px;overflow: auto
 }

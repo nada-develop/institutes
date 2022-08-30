@@ -112,7 +112,7 @@
                                                     <li class="timeline-sm-item">
                                                         <span class="mb-2 d-block">الكفاءة</span>
                                                         <h5 class="mt-0 mb-1">
-                                                            {{ $teacher->efficiency }}
+                                                            {{ $teacher->efficiency_name }}
                                                         </h5>
                                                         <p class="mb-0">الكود : {{   $teacher->efficiency_code}}</p>
                                                     </li>

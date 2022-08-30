@@ -165,98 +165,57 @@
                         <div class="col-xl-6">
                             <div class="card summary-card">
                                 <div class="card-body">
-
-                                    <h4 class="header-title mb-3">التخصصات</h4>
-
+                                    <div class="header-title mb-3">
+                                        <h4>التخصصات</h4>
+                                        <input class="form-control" type="text" id="subject_search" placeholder="بحث">
+                                    </div>
                                     <div class="subjects inbox-widget" data-simplebar>
-                                        @foreach ($subjects as $subject => $total)
-                                            <div class="inbox-item">
-                                                @if ($subject == '')
-                                                    <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                                @else
-                                                    <p class="inbox-item-author" style="width:80%">{{ $subject }}</p>
-                                                @endif
-                                                <p class="inbox-item-date text-center" style="width:15%">
-                                                    {{ $total }}
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                    </div> <!-- end inbox-widget -->
+
+                                    </div>
                                 </div>
                             </div> <!-- end card -->
                         </div>
                         <div class="col-xl-6">
                             <div class="card summary-card">
                                 <div class="card-body">
-
-                                    <h4 class="header-title mb-3">التخصصات</h4>
-
-                                    <div class="subjects inbox-widget" data-simplebar>
-                                        @foreach ($subjects as $subject => $total)
-                                            <div class="inbox-item">
-                                                @if ($subject == '')
-                                                    <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                                @else
-                                                    <p class="inbox-item-author" style="width:80%">{{ $subject }}
-                                                    </p>
-                                                @endif
-                                                <p class="inbox-item-date text-center" style="width:15%">
-                                                    {{ $total }}
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                    </div> <!-- end inbox-widget -->
+                                    <div class="header-title mb-3">
+                                        <h4>المؤهلات</h4>
+                                        <input class="form-control" type="text" id="qualification_search"
+                                            placeholder="بحث">
+                                    </div>
+                                    <div class="qualifications inbox-widget" data-simplebar>
+                                    </div>
                                 </div>
-                            </div> <!-- end card -->
+                            </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="card summary-card">
                                 <div class="card-body">
-
-                                    <h4 class="header-title mb-3">التخصصات</h4>
-
-                                    <div class="subjects inbox-widget" data-simplebar>
-                                        @foreach ($subjects as $subject => $total)
-                                            <div class="inbox-item">
-                                                @if ($subject == '')
-                                                    <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                                @else
-                                                    <p class="inbox-item-author" style="width:80%">{{ $subject }}
-                                                    </p>
-                                                @endif
-                                                <p class="inbox-item-date text-center" style="width:15%">
-                                                    {{ $total }}
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                    </div> <!-- end inbox-widget -->
+                                    <div class="header-title mb-3">
+                                        <h4>الموقف من العمل</h4>
+                                        <input class="form-control" type="text" id="job_attitude_search"
+                                            placeholder="بحث">
+                                    </div>
+                                    <div class="job_attitudes inbox-widget" data-simplebar>
+                                    </div>
                                 </div>
-                            </div> <!-- end card -->
+                            </div>
                         </div>
+
                         <div class="col-xl-6">
                             <div class="card summary-card">
                                 <div class="card-body">
-
-                                    <h4 class="header-title mb-3">التخصصات</h4>
-
-                                    <div class="subjects inbox-widget" data-simplebar>
-                                        @foreach ($subjects as $subject => $total)
-                                            <div class="inbox-item">
-                                                @if ($subject == '')
-                                                    <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                                @else
-                                                    <p class="inbox-item-author" style="width:80%">{{ $subject }}
-                                                    </p>
-                                                @endif
-                                                <p class="inbox-item-date text-center" style="width:15%">
-                                                    {{ $total }}
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                    </div> <!-- end inbox-widget -->
+                                    <div class="header-title mb-3">
+                                        <h4> الكفاءة </h4>
+                                        <input class="form-control" type="text" id="efficiency_search"
+                                            placeholder="بحث">
+                                    </div>
+                                    <div class="efficiencies inbox-widget" data-simplebar>
+                                    </div>
                                 </div>
-                            </div> <!-- end card -->
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -265,72 +224,41 @@
                 <div class="col-xl-4">
                     <div class="card summary-card">
                         <div class="card-body">
-
-                            <h4 class="header-title mb-3">التخصصات</h4>
-
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
-                                @foreach ($subjects as $subject => $total)
-                                    <div class="inbox-item">
-                                        @if ($subject == '')
-                                            <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                        @else
-                                            <p class="inbox-item-author" style="width:80%">{{ $subject }}</p>
-                                        @endif
-                                        <p class="inbox-item-date text-center" style="width:15%">
-                                            {{ $total }}
-                                        </p>
-                                    </div>
-                                @endforeach
-                            </div> <!-- end inbox-widget -->
+                            <div class="header-title mb-3">
+                                <h4> الوظيفة على الكادر </h4>
+                                <input class="form-control" type="text" id="job_staff_search"
+                                    placeholder="بحث">
+                            </div>
+                            <div class="job_staff inbox-widget" data-simplebar>
+                            </div>
                         </div>
-                    </div> <!-- end card -->
-                </div>
-
-                <div class="col-xl-4">
-                    <div class="card summary-card">
-                        <div class="card-body">
-
-                            <h4 class="header-title mb-3">التخصصات</h4>
-
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
-                                @foreach ($subjects as $subject => $total)
-                                    <div class="inbox-item">
-                                        @if ($subject == '')
-                                            <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                        @else
-                                            <p class="inbox-item-author" style="width:80%">{{ $subject }}</p>
-                                        @endif
-                                        <p class="inbox-item-date text-center" style="width:15%">
-                                            {{ $total }}
-                                        </p>
-                                    </div>
-                                @endforeach
-                            </div> <!-- end inbox-widget -->
-                        </div>
-                    </div> <!-- end card -->
+                    </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="card summary-card">
                         <div class="card-body">
-
-                            <h4 class="header-title mb-3">التخصصات</h4>
-
-                            <div class="subjects inbox-widget" data-simplebar style="max-height: 200px;overflow: auto">
-                                @foreach ($subjects as $subject => $total)
-                                    <div class="inbox-item">
-                                        @if ($subject == '')
-                                            <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
-                                        @else
-                                            <p class="inbox-item-author" style="width:80%">{{ $subject }}</p>
-                                        @endif
-                                        <p class="inbox-item-date text-center" style="width:15%">
-                                            {{ $total }}
-                                        </p>
-                                    </div>
-                                @endforeach
-                            </div> <!-- end inbox-widget -->
+                            <div class="header-title mb-3">
+                                <h4> المجموعة النوعية   </h4>
+                                <input class="form-control" type="text" id="group_type_search"
+                                    placeholder="بحث">
+                            </div>
+                            <div class="group_types inbox-widget" data-simplebar>
+                            </div>
                         </div>
-                    </div> <!-- end card -->
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card summary-card">
+                        <div class="card-body">
+                            <div class="header-title mb-3">
+                                <h4> الوظيفة   </h4>
+                                <input class="form-control" type="text" id="job_search"
+                                    placeholder="بحث">
+                            </div>
+                            <div class="jobs inbox-widget" data-simplebar>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -342,6 +270,8 @@
                 $('#region').trigger('change');
             });
 
+            var check_management_selected = false;
+            var check_institute_selected = false;
             $('#region').on('change', function() {
                 var region_code = $(this).val();
                 $('.search-loader').removeClass('d-none');
@@ -353,57 +283,185 @@
                     },
                     success: function(response) {
 
-
-                        $('.subjects').empty();
                         $('#management').find('option').remove();
+                        $('#institute').find('option').remove();
                         if (response.managements.length != 0) {
-                            $('#management').append(`<option value="all"> الكل </option>`);
+                            // $('#management').append(`<option value="all"> الكل </option>`);
+                            $('#management').append(`<option selected disabled> اختر الاداره </option>`);
                             if (response.management_selected !== undefined) {
                                 $.each(response.managements, function(name, code) {
                                     if (response.management_selected == code) {
                                         $('#management').append(
                                             `<option value="${code}" selected> ${name}</option>`
-                                            );
+                                        );
                                     } else {
                                         $('#management').append(
                                             `<option value="${code}" > ${name}</option>`);
                                     }
                                 });
+                                check_management_selected = true;
+                                $('#management').trigger('change');
                             } else {
                                 $.each(response.managements, function(name, code) {
                                     $('#management').append(
                                         `<option value="${code}" > ${name}</option>`);
                                 });
                             }
-
-                            $.each(response.subjects, function(subject, subject_count) {
-                                if (subject == "") {
-                                    $('.subjects').append(
-                                        `  <div class="inbox-item">
+                            if (!check_management_selected) {
+                                $('.subjects').empty();
+                                $('.qualifications').empty();
+                                $('.job_attitudes').empty();
+                                $('.efficiencies').empty();
+                                $('.job_staff').empty();
+                                $('.group_types').empty();
+                                $('.jobs').empty();
+                                $.each(response.subjects, function(subject, subject_count) {
+                                    if (subject == "") {
+                                        $('.subjects').append(
+                                            `  <div class="inbox-item">
                                         <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
                                         <p class="inbox-item-date text-center" style="width:15%">
                                             ${subject_count}
                                         </p>
                                     </div>`);
-                                } else {
-                                    $('.subjects').append(
-                                        `  <div class="inbox-item">
+                                    } else {
+                                        $('.subjects').append(
+                                            `  <div class="inbox-item">
                                         <p class="inbox-item-author" style="width:80%">${subject}</p>
                                         <p class="inbox-item-date text-center" style="width:15%">
                                             ${subject_count}
                                         </p>
                                     </div>`);
-                                }
+                                    }
+                                });
+                                $.each(response.qualifications, function(qualification,
+                                    qualification_count) {
+                                    if (qualification == "") {
+                                        $('.qualifications').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">بدون مؤهل</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${qualification_count}
+                                        </p>
+                                    </div>`);
+                                    } else {
+                                        $('.qualifications').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">${qualification}</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${qualification_count}
+                                        </p>
+                                    </div>`);
+                                    }
 
-                            });
-                            $('#management').trigger('change');
-                            $('.search-loader').addClass('d-none');
+                                });
+                                $.each(response.job_attitudes, function(job_attitude, job_attitude_count) {
+                                    if (job_attitude == "") {
+                                        $('.job_attitudes').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_attitude_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.job_attitudes').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job_attitude}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_attitude_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.efficiencies, function(efficiency, efficiency_count) {
+                                    if (efficiency == "") {
+                                        $('.efficiencies').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%"> بدون كفاءة</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${efficiency_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.efficiencies').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${efficiency}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${efficiency_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.job_staff, function(job_staff, job_staff_count) {
+                                    if (job_staff == "") {
+                                        $('.job_staff').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_staff_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.job_staff').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job_staff}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_staff_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.group_types, function(group_type, group_type_count) {
+                                    if (group_type == "") {
+                                        $('.group_types').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${group_type_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.group_types').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${group_type}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${group_type_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.jobs, function(job, job_count) {
+                                    if (job == "") {
+                                        $('.jobs').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.jobs').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $('.search-loader').addClass('d-none');
+                            }
                         }
                     },
                 });
-
-
             });
+
 
             $('#management').on('change', function() {
                 var management_code = $(this).val();
@@ -417,33 +475,209 @@
                         region_code: region_code
                     },
                     success: function(response) {
-                        console.log(response);
-                        $('.search-loader').addClass('d-none');
                         $('#institute').find('option').remove();
                         if (response.length != 0) {
-                            $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
-
+                            if (check_management_selected) {
+                                $('#institute').append(`<option value="all"> الكل </option>`);
+                            } else {
+                                $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
+                            }
                             if (response.institute_selected !== undefined) {
                                 $.each(response.institutes, function(name, code) {
                                     if (response.institute_selected == code) {
                                         $('#institute').append(
                                             `<option value="${code}" selected> ${name}</option>`
-                                            );
+                                        );
                                     } else {
                                         $('#institute').append(
                                             `<option value="${code}" > ${name}</option>`);
                                     }
                                 });
+                                check_institute_selected = true;
+                                $('#institute').trigger('change');
                             } else {
                                 $.each(response.institutes, function(name, code) {
                                     $('#institute').append(
                                         `<option value="${code}" > ${name}</option>`);
                                 });
                             }
+                            if (!check_institute_selected) {
+                                $('.subjects').empty();
+                                $('.qualifications').empty();
+                                $('.job_attitudes').empty();
+                                $('.efficiencies').empty();
+                                $('.job_staff').empty();
+                                $('.group_types').empty();
+                                $('.jobs').empty();
+                                $.each(response.subjects, function(subject, subject_count) {
+                                    if (subject == "") {
+                                        $('.subjects').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">بدون تخصص</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${subject_count}
+                                        </p>
+                                    </div>`);
+                                    } else {
+                                        $('.subjects').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">${subject}</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${subject_count}
+                                        </p>
+                                    </div>`);
+                                    }
 
+                                });
+                                $.each(response.qualifications, function(qualification,
+                                    qualification_count) {
+                                    if (qualification == "") {
+                                        $('.qualifications').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">بدون مؤهل</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${qualification_count}
+                                        </p>
+                                    </div>`);
+                                    } else {
+                                        $('.qualifications').append(
+                                            `  <div class="inbox-item">
+                                        <p class="inbox-item-author" style="width:80%">${qualification}</p>
+                                        <p class="inbox-item-date text-center" style="width:15%">
+                                            ${qualification_count}
+                                        </p>
+                                    </div>`);
+                                    }
+
+                                });
+                                $.each(response.job_attitudes, function(job_attitude, job_attitude_count) {
+                                    if (job_attitude == "") {
+                                        $('.job_attitudes').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_attitude_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.job_attitudes').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job_attitude}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_attitude_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.efficiencies, function(efficiency, efficiency_count) {
+                                    if (efficiency == "") {
+                                        $('.efficiencies').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون كفاءة</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${efficiency_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.efficiencies').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${efficiency}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${efficiency_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.job_staff, function(job_staff, job_staff_count) {
+                                    if (job_staff == "") {
+                                        $('.job_staff').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_staff_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.job_staff').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job_staff}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_staff_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.group_types, function(group_type, group_type_count) {
+                                    if (group_type == "") {
+                                        $('.group_types').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${group_type_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.group_types').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${group_type}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${group_type_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $.each(response.jobs, function(job, job_count) {
+                                    if (job == "") {
+                                        $('.jobs').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون </p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_count}
+                                    </p>
+                                          </div>`);
+                                    } else {
+                                        $('.jobs').append(
+                                            `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${job}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${job_count}
+                                    </p>
+                                          </div>`);
+                                    }
+
+                                });
+                                $('.search-loader').addClass('d-none');
+                            }
+                        }
+                    },
+                });
+            });
+            $('#institute').on('change', function() {
+                var institute_code = $(this).val();
+                var management_code = $('#management').val();
+                $('.search-loader').removeClass('d-none');
+                $.ajax({
+                    url: "{{ route('admin.summary.fetch_summary_from_institute') }}",
+                    type: "GET",
+                    data: {
+                        management_code: management_code,
+                        institute_code: institute_code
+                    },
+                    success: function(response) {
+                        $('.search-loader').addClass('d-none');
+                        if (response.length != 0) {
                             $('.subjects').empty();
+                            $('.qualifications').empty();
+                            $('.job_attitudes').empty();
+                            $('.efficiencies').empty();
+                            $('.job_staff').empty();
+                            $('.group_types').empty();
+                            $('.jobs').empty();
                             $.each(response.subjects, function(subject, subject_count) {
-
                                 if (subject == "") {
                                     $('.subjects').append(
                                         `  <div class="inbox-item">
@@ -463,11 +697,183 @@
                                 }
 
                             });
+                            $.each(response.qualifications, function(qualification,
+                                qualification_count) {
+                                if (qualification == "") {
+                                    $('.qualifications').append(
+                                        `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">بدون مؤهل</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${qualification_count}
+                                    </p>
+                                </div>`);
+                                } else {
+                                    $('.qualifications').append(
+                                        `  <div class="inbox-item">
+                                    <p class="inbox-item-author" style="width:80%">${qualification}</p>
+                                    <p class="inbox-item-date text-center" style="width:15%">
+                                        ${qualification_count}
+                                    </p>
+                                </div>`);
+                                }
+
+                            });
+                            $.each(response.job_attitudes, function(job_attitude, job_attitude_count) {
+                                if (job_attitude == "") {
+                                    $('.job_attitudes').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">بدون </p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_attitude_count}
+                                </p>
+                                      </div>`);
+                                } else {
+                                    $('.job_attitudes').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">${job_attitude}</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_attitude_count}
+                                </p>
+                                      </div>`);
+                                }
+
+                            });
+                            $.each(response.efficiencies, function(efficiency, efficiency_count) {
+                                if (efficiency == "") {
+                                    $('.efficiencies').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">بدون كفاءة</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${efficiency_count}
+                                </p>
+                                      </div>`);
+                                } else {
+                                    $('.efficiencies').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">${efficiency}</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${efficiency_count}
+                                </p>
+                                      </div>`);
+                                }
+
+                            });
+                            $.each(response.job_staff, function(job_staff, job_staff_count) {
+                                if (job_staff == "") {
+                                    $('.job_staff').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">بدون </p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_staff_count}
+                                </p>
+                                      </div>`);
+                                } else {
+                                    $('.job_staff').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">${job_staff}</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_staff_count}
+                                </p>
+                                      </div>`);
+                                }
+
+                            });
+                            $.each(response.group_types, function(group_type, group_type_count) {
+                                if (group_type == "") {
+                                    $('.group_types').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">بدون </p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${group_type_count}
+                                </p>
+                                      </div>`);
+                                } else {
+                                    $('.group_types').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">${group_type}</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${group_type_count}
+                                </p>
+                                      </div>`);
+                                }
+
+                            });
+                            $.each(response.jobs, function(job, job_count) {
+                                if (job == "") {
+                                    $('.jobs').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">بدون </p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_count}
+                                </p>
+                                      </div>`);
+                                } else {
+                                    $('.jobs').append(
+                                        `  <div class="inbox-item">
+                                <p class="inbox-item-author" style="width:80%">${job}</p>
+                                <p class="inbox-item-date text-center" style="width:15%">
+                                    ${job_count}
+                                </p>
+                                      </div>`);
+                                }
+
+                            });
+
                         }
                     },
                 });
-
-
             });
+
+            $(document).on('keyup', '#qualification_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".qualifications .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#subject_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".subjects .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#job_attitude_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".job_attitudes .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#efficiency_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".efficiencies .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#job_staff_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".job_staff .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#group_type_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".group_types .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+            $(document).on('keyup', '#job_search', function() {
+                var filter, ul, li, a, i, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".jobs .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+
+
         </script>
     @endsection
