@@ -60,7 +60,9 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <div class="row">
+                    <div class="row summary-count ">
+
+
                         <div class="col-md-6 col-xl-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
@@ -71,8 +73,8 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="text-end">
-                                                <h3 class="text-dark mt-1"><span
+                                            <div >
+                                                <h3 class=" text-dark mt-1"><span
                                                         data-plugin="counterup">{{ $regionCount }}</span>
                                                 </h3>
                                                 <a>
@@ -96,11 +98,11 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="text-end">
-                                                <h3 class="text-dark mt-1"><span
+                                            <div >
+                                                <h3 class=" text-dark mt-1"><span
                                                         data-plugin="counterup">{{ $managementCount }}</span></h3>
                                                 <a>
-                                                    <p class="text-muted mb-1 text-truncate">الادارات</p>
+                                                    <p class="text-muted mb-1 text-truncate">الإدارات</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -109,8 +111,6 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 col-xl-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
@@ -121,11 +121,63 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="text-end">
-                                                <h3 class="text-dark mt-1"><span
+                                            <div >
+                                                <h3 class=" text-dark mt-1"><span
                                                         data-plugin="counterup">{{ $instituteCount }}</span></h3>
                                                 <a>
                                                     <p class="text-muted mb-1 text-truncate">المعاهد</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-12">
+                            <h5 class=" mt-0 mb-1">اجمالى عدد المعلمين ({{ $teacherCount  }})</h5>
+                            <p class="mb-1">عدد المعلمين فى كل من</p>
+                        </div>
+
+                        <div class="col-md-6 col-xl-12">
+                            <div class="widget-rounded-circle card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="avatar-lg rounded bg-soft-primary">
+                                                <i class="dripicons-view-thumb font-24 avatar-title text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div >
+                                                <h3 class="regionCount text-dark mt-1"><span
+                                                        data-plugin="counterup">0</span>
+                                                </h3>
+                                                <a>
+                                                    <p class="text-muted mb-1 text-truncate"> المنطقة</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end row-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-12">
+                            <div class="widget-rounded-circle card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="avatar-lg rounded bg-soft-info">
+
+                                                <i class=" dripicons-mail font-24 avatar-title text-info"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div >
+                                                <h3 class="managementCount text-dark mt-1"><span
+                                                        data-plugin="counterup">0</span></h3>
+                                                <a>
+                                                    <p class="text-muted mb-1 text-truncate">الادارة</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -139,17 +191,16 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-lg rounded bg-soft-warning">
-                                                <i class="dripicons-photo-group font-24 avatar-title text-warning"></i>
+                                            <div class="avatar-lg rounded bg-soft-success">
+                                                <i class="dripicons-blog font-24 avatar-title text-success"></i>
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="text-end">
-                                                <h3 class="text-dark mt-1"><span
-                                                        data-plugin="counterup">{{ $teacherCount }}</span>
-                                                </h3>
+                                            <div >
+                                                <h3 class="instituteCount text-dark mt-1"><span
+                                                        data-plugin="counterup">0</span></h3>
                                                 <a>
-                                                    <p class="text-muted mb-1 text-truncate">المعلمين</p>
+                                                    <p class="text-muted mb-1 text-truncate">المعهد</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -158,11 +209,12 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="col-xl-9">
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-differ">
                             <div class="card summary-card">
                                 <div class="card-body">
                                     <div class="header-title mb-3">
@@ -175,7 +227,7 @@
                                 </div>
                             </div> <!-- end card -->
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-differ">
                             <div class="card summary-card">
                                 <div class="card-body">
                                     <div class="header-title mb-3">
@@ -188,7 +240,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-differ">
                             <div class="card summary-card">
                                 <div class="card-body">
                                     <div class="header-title mb-3">
@@ -201,8 +253,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-differ">
                             <div class="card summary-card">
                                 <div class="card-body">
                                     <div class="header-title mb-3">
@@ -215,13 +266,12 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-differ">
                     <div class="card summary-card">
                         <div class="card-body">
                             <div class="header-title mb-3">
@@ -234,7 +284,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-differ">
                     <div class="card summary-card">
                         <div class="card-body">
                             <div class="header-title mb-3">
@@ -247,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-4 col-differ">
                     <div class="card summary-card">
                         <div class="card-body">
                             <div class="header-title mb-3">
@@ -266,6 +316,7 @@
     @section('custom-script')
         <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
         <script>
+
             $(document).ready(function() {
                 $('#region').trigger('change');
             });
@@ -286,7 +337,6 @@
                         $('#management').find('option').remove();
                         $('#institute').find('option').remove();
                         if (response.managements.length != 0) {
-                            // $('#management').append(`<option value="all"> الكل </option>`);
                             $('#management').append(`<option selected disabled> اختر الاداره </option>`);
                             if (response.management_selected !== undefined) {
                                 $.each(response.managements, function(name, code) {
@@ -307,6 +357,10 @@
                                         `<option value="${code}" > ${name}</option>`);
                                 });
                             }
+
+                            $('.regionCount  span').text(response.region_teacher_count);
+                            $('.managementCount  span').text(response.management_teacher_count);
+                            $('.instituteCount  span').text(response.institute_teacher_count);
                             if (!check_management_selected) {
                                 $('.subjects').empty();
                                 $('.qualifications').empty();
@@ -462,7 +516,6 @@
                 });
             });
 
-
             $('#management').on('change', function() {
                 var management_code = $(this).val();
                 var region_code = $('#region').val();
@@ -501,6 +554,9 @@
                                         `<option value="${code}" > ${name}</option>`);
                                 });
                             }
+                            $('.regionCount  span').text(response.region_teacher_count);
+                            $('.managementCount  span').text(response.management_teacher_count);
+                            $('.instituteCount  span').text(response.institute_teacher_count);
                             if (!check_institute_selected) {
                                 $('.subjects').empty();
                                 $('.qualifications').empty();
@@ -656,20 +712,27 @@
                     },
                 });
             });
+
             $('#institute').on('change', function() {
                 var institute_code = $(this).val();
                 var management_code = $('#management').val();
+                var region_code = $('#region').val();
                 $('.search-loader').removeClass('d-none');
                 $.ajax({
                     url: "{{ route('admin.summary.fetch_summary_from_institute') }}",
                     type: "GET",
                     data: {
                         management_code: management_code,
-                        institute_code: institute_code
+                        institute_code: institute_code,
+                        region_code:region_code
                     },
                     success: function(response) {
-                        $('.search-loader').addClass('d-none');
+
+
                         if (response.length != 0) {
+                            $('.regionCount  span').text(response.region_teacher_count);
+                            $('.managementCount  span').text(response.management_teacher_count);
+                            $('.instituteCount  span').text(response.institute_teacher_count);
                             $('.subjects').empty();
                             $('.qualifications').empty();
                             $('.job_attitudes').empty();
@@ -818,7 +881,7 @@
                                 }
 
                             });
-
+                            $('.search-loader').addClass('d-none');
                         }
                     },
                 });

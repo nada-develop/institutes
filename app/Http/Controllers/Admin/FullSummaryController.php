@@ -31,18 +31,11 @@ class FullSummaryController extends Controller
         }
         $data['regions'] =  Region::all();
 
-
-        $subjects = Teacher::where('region_code',110)->groupBy('subject')
-    ->selectRaw('count(*) as total, subject')
-    ->pluck('total','subject');
-
-
-        // dd($subjects);
         $regionCount = Region::count();
         $instituteCount = Institute::count();
         $managementCount = Management::count();
         $teacherCount = Teacher::count();
-        return view('admin.summary.index',compact('data','regionCount','instituteCount','managementCount','teacherCount','subjects'));
+        return view('admin.summary.index',compact('data','regionCount','instituteCount','managementCount','teacherCount'));
     }
 
     public function fetch_summary_from_region(Request $request){
@@ -55,6 +48,9 @@ class FullSummaryController extends Controller
         }
         if($request->region_code == "all"){
             $data['managements'] = Management::pluck('code', 'name');
+            $data['region_teacher_count'] =  Teacher::count();
+            $data['management_teacher_count'] =  0;
+            $data['institute_teacher_count'] =  0;
             $data['subjects'] = Teacher::groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
@@ -79,6 +75,9 @@ class FullSummaryController extends Controller
 
         }else{
             $data['managements'] = Management::where('region_code', $request->region_code)->pluck('code', 'name');
+            $data['region_teacher_count'] =  Teacher::where('region_code',$request->region_code)->count();
+            $data['management_teacher_count'] =  0;
+            $data['institute_teacher_count'] =  0;
             $data['subjects'] = Teacher::where('region_code',$request->region_code)->groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
@@ -112,6 +111,13 @@ class FullSummaryController extends Controller
             }
         }
             $data['institutes'] = Institute::where('management_code',$request->management_code)->pluck('code', 'name');
+            if($request->region_code == 'all'){
+                $data['region_teacher_count'] =  Teacher::count();
+            }else{
+                $data['region_teacher_count'] =  Teacher::where('region_code',$request->region_code)->count();
+            }
+            $data['management_teacher_count'] = Teacher::where('management_code',$request->management_code)->count();
+            $data['institute_teacher_count'] =  0;
             $data['subjects'] = Teacher::where('management_code',$request->management_code)->groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
@@ -147,27 +153,60 @@ class FullSummaryController extends Controller
             }
         }
             $data['institutes'] = Institute::where('management_code',$request->management_code)->pluck('code', 'name');
-            $data['subjects'] = Teacher::where('institute_code',$request->institute_code)->groupBy('subject')
-            ->selectRaw('count(*) as total, subject')
-            ->pluck('total','subject');
-            $data['qualifications'] = Teacher::where('institute_code',$request->institute_code)->groupBy('qualification_name')
-            ->selectRaw('count(*) as total, qualification_name')
-            ->pluck('total','qualification_name');
-            $data['job_attitudes'] = Teacher::where('institute_code',$request->institute_code)->groupBy('job_attitude')
-            ->selectRaw('count(*) as total, job_attitude')
-            ->pluck('total','job_attitude');
-            $data['efficiencies'] = Teacher::where('institute_code',$request->institute_code)->groupBy('efficiency_name')
-            ->selectRaw('count(*) as total, efficiency_name')
-            ->pluck('total','efficiency_name');
-            $data['job_staff'] = Teacher::where('management_code',$request->management_code)->groupBy('job_staff')
-            ->selectRaw('count(*) as total, job_staff')
-            ->pluck('total','job_staff');
-            $data['group_types'] = Teacher::where('management_code',$request->management_code)->groupBy('group_type')
-            ->selectRaw('count(*) as total, group_type')
-            ->pluck('total','group_type');
-            $data['jobs'] = Teacher::where('management_code',$request->management_code)->groupBy('job_name')
-            ->selectRaw('count(*) as total, job_name')
-            ->pluck('total','job_name');
+            if($request->region_code == 'all'){
+                $data['region_teacher_count'] =  Teacher::count();
+            }else{
+                $data['region_teacher_count'] =  Teacher::where('region_code',$request->region_code)->count();
+            }
+            $data['management_teacher_count'] = Teacher::where('management_code',$request->management_code)->count();
+            if($request->institute_code == 'all'){
+                $data['institute_teacher_count'] = Teacher::where('management_code',$request->management_code)->count();
+                $data['subjects'] = Teacher::where('management_code',$request->management_code)->groupBy('subject')
+                ->selectRaw('count(*) as total, subject')
+                ->pluck('total','subject');
+                $data['qualifications'] = Teacher::where('management_code',$request->management_code)->groupBy('qualification_name')
+                ->selectRaw('count(*) as total, qualification_name')
+                ->pluck('total','qualification_name');
+                $data['job_attitudes'] = Teacher::where('management_code',$request->management_code)->groupBy('job_attitude')
+                ->selectRaw('count(*) as total, job_attitude')
+                ->pluck('total','job_attitude');
+                $data['efficiencies'] = Teacher::where('management_code',$request->management_code)->groupBy('efficiency_name')
+                ->selectRaw('count(*) as total, efficiency_name')
+                ->pluck('total','efficiency_name');
+                $data['job_staff'] = Teacher::where('management_code',$request->management_code)->groupBy('job_staff')
+                ->selectRaw('count(*) as total, job_staff')
+                ->pluck('total','job_staff');
+                $data['group_types'] = Teacher::where('management_code',$request->management_code)->groupBy('group_type')
+                ->selectRaw('count(*) as total, group_type')
+                ->pluck('total','group_type');
+                $data['jobs'] = Teacher::where('management_code',$request->management_code)->groupBy('job_name')
+                ->selectRaw('count(*) as total, job_name')
+                ->pluck('total','job_name');
+
+            }else{
+                $data['institute_teacher_count'] =  Teacher::where('institute_code',$request->institute_code)->count();
+                $data['subjects'] = Teacher::where('institute_code',$request->institute_code)->groupBy('subject')
+                ->selectRaw('count(*) as total, subject')
+                ->pluck('total','subject');
+                $data['qualifications'] = Teacher::where('institute_code',$request->institute_code)->groupBy('qualification_name')
+                ->selectRaw('count(*) as total, qualification_name')
+                ->pluck('total','qualification_name');
+                $data['job_attitudes'] = Teacher::where('institute_code',$request->institute_code)->groupBy('job_attitude')
+                ->selectRaw('count(*) as total, job_attitude')
+                ->pluck('total','job_attitude');
+                $data['efficiencies'] = Teacher::where('institute_code',$request->institute_code)->groupBy('efficiency_name')
+                ->selectRaw('count(*) as total, efficiency_name')
+                ->pluck('total','efficiency_name');
+                $data['job_staff'] = Teacher::where('management_code',$request->management_code)->groupBy('job_staff')
+                ->selectRaw('count(*) as total, job_staff')
+                ->pluck('total','job_staff');
+                $data['group_types'] = Teacher::where('management_code',$request->management_code)->groupBy('group_type')
+                ->selectRaw('count(*) as total, group_type')
+                ->pluck('total','group_type');
+                $data['jobs'] = Teacher::where('management_code',$request->management_code)->groupBy('job_name')
+                ->selectRaw('count(*) as total, job_name')
+                ->pluck('total','job_name');
+            }
         return $data;
     }
 }

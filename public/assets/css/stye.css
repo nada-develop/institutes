@@ -79,6 +79,10 @@
     line-height: 30px;
     /* border-radius: 50%; */
 }
+.summary-card{
+    margin-bottom: 15px;
+
+}
 .summary-card .card-body{
     padding: 9px;
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
@@ -105,7 +109,9 @@
     height: 35px;
 }
 .summary-card .inbox-widget{
-    max-height: 211px;height: 211px;overflow: auto
+    max-height: 204px;
+    height: 204px;
+    overflow: auto
 }
 .summary-card .inbox-widget::-webkit-scrollbar{
     width: 12px !important;
@@ -130,3 +136,50 @@
     background: #888;
     border-radius: 20px;
   }
+
+ .qualifications.inbox-widget .inbox-item .inbox-item-date
+{
+    background: #dc3545;
+
+}
+.job_attitudes.inbox-widget .inbox-item .inbox-item-date
+{
+    background: #17a2b8;
+}
+.efficiencies.inbox-widget .inbox-item .inbox-item-date
+{
+    background:  #1abc9c;
+}
+.job_staff.inbox-widget .inbox-item .inbox-item-date
+{
+    background: #6c757d;
+}
+
+.group_types.inbox-widget .inbox-item .inbox-item-date
+{
+    background: #007bff;
+}
+
+.jobs.inbox-widget .inbox-item .inbox-item-date
+{
+    background: #6658dd;
+}
+
+.summary-count .card-body{
+    padding: 0;
+}
+.summary-count .card-body h3,.summary-count .card-body p{
+   text-align: center;
+}
+.summary-count .card-body h3{
+    margin-top: 10px !important;
+    margin-bottom: 3px;
+}
+
+.summary-count  .widget-rounded-circle{
+    margin-bottom: 10px;
+}
+
+.col-differ{
+    padding: 0 7px !important;
+}
