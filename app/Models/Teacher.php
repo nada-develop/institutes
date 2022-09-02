@@ -53,6 +53,8 @@ class Teacher extends Model
         'job_code',
         'efficiency_code',
         'efficiency',
+        'educational_level',
+        'institute_classes'
 
     ];
 }
