@@ -15,6 +15,9 @@
 
                                 <h4 class="mb-0">{{ $teacher->teacher_name }}</h4>
                                 <p class="text-muted mt-2">الكود : {{ $teacher->teacher_code }}</p>
+                                <a href="{{ route('admin.teacher.print',$teacher->id) }}" class="btn btn-primary" >
+                                    طباعة
+                                </a>
                                 <hr>
 
                                 <div class="text-start mt-3">
@@ -109,7 +112,7 @@
                                                     <li class="timeline-sm-item">
                                                         <span class="mb-2 d-block">الكفاءة</span>
                                                         <h5 class="mt-0 mb-1">
-                                                            {{ $teacher->efficiency }}
+                                                            {{ $teacher->efficiency_name }}
                                                         </h5>
                                                         <p class="mb-0">الكود : {{   $teacher->efficiency_code}}</p>
                                                     </li>

@@ -85,14 +85,14 @@
                         <div class="collapse" id="reports">
                             <ul class="nav-second-level">
 
-                                @can('summary_management_access')
+                                {{--  @can('summary_management_access')  --}}
                                     <li>
                                         <a href="{{ route('admin.summary') }}">
                                             <i data-feather="bar-chart"></i>
                                             <span> تحليل المعاهد</span>
                                         </a>
                                     </li>
-                                    @endcan
+                                    {{--  @endcan  --}}
                                     <li>
                                         <a href="{{ route('admin.teacher_with_places') }}">
                                             <i data-feather="bar-chart"></i>

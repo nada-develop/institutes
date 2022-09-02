@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\FullSummaryController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SummaryController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Models\Teacher;
 
 Route::redirect('/', '/login');
 Route::get('/home', function () {
@@ -16,6 +19,7 @@ Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -31,8 +35,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+// full summary
+Route::get('summary',[FullSummaryController::class,'index'])->name('summary');
+Route::get('fetch-summary-from-region',[FullSummaryController::class,'fetch_summary_from_region'])->name('summary.fetch_summary_from_region');
+Route::get('fetch-summary-from-management',[FullSummaryController::class,'fetch_summary_from_management'])->name('summary.fetch_summary_from_management');
+Route::get('fetch-summary-from-institute',[FullSummaryController::class,'fetch_summary_from_institute'])->name('summary.fetch_summary_from_institute');
+
     //  summary
-    Route::get('summary',[SummaryController::class,'index'])->name('summary');
     Route::get('fetch-summary/{region?}/{management?}/{institute?}',[SummaryController::class,'fetch_summary'])->name('summary.fetch_summary');
     Route::get('print-fetch-summary/{region?}/{management?}/{institute?}',[SummaryController::class,'print_fetch_summary'])->name('summary.print_fetch_summary');
 
@@ -51,6 +60,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // teacher
     Route::resource('teachers', TeacherController::class);
+    Route::get('print-teacher/{id}',[TeacherController::class,'print_teacher'])->name('teacher.print');
     Route::get('teachers/pagination/fetch_data', [TeacherController::class, 'fetch_data'])->name('teacher.pagination.fetch_data');
     Route::get('fetch-qualification-from-type', [TeacherController::class, 'fetch_qualification_from_type'])->name('teacher.fetch_qualification_from_type');
     Route::post('teacher/import',[TeacherController::class,'import'])->name('teacher.import');
