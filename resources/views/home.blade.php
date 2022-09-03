@@ -147,7 +147,7 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div>
-                <div class="col-xl-8 col-differ">
+                {{--  <div class="col-xl-8 col-differ">
                     <div class="card chart">
                         <div class="card-body">
                             <div class="card-widgets">
@@ -159,6 +159,24 @@
 
                             <div id="cardCollpase5" class="collapse pt-3 show" dir="ltr">
                                 <div id="apex-column-1" class="apex-charts" data-colors="#6658dd,#1abc9c,#CED4DC"></div>
+                            </div> <!-- collapsed end -->
+                        </div> <!-- end card-body -->
+                    </div> <!-- end card-->
+                </div>  --}}
+                <div class="col-xl-8 col-differ">
+                    <div class="card chart">
+                        <div class="card-body">
+                            <div class="card-widgets">
+                                <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
+                                <a data-bs-toggle="collapse" href="#cardCollpase7" role="button" aria-expanded="false"
+                                    aria-controls="cardCollpase7"><i class="mdi mdi-minus"></i></a>
+                                <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
+                            </div>
+                            <h4 class="header-title mb-0">الوظيفة على الكادر</h4>
+
+
+                            <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
+                                <div id="apex-mixed-12" class="apex-charts" data-colors="#CED4DC,#6658dd"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -913,6 +931,50 @@
             }
          };
          (chart = new ApexCharts(document.querySelector("#apex-mixed-111"), options)).render();
+         colors = ["#dc3545","#CED4DC"];
+         (dataColors = $("#apex-mixed-12").data("colors"));
+         options = {
+            chart: {
+               height: 290,
+               type: "line"
+            },
+            stroke: {
+               width: 5,
+               curve: "smooth"
+            },
+            series: [{
+               name: "عدد المعلمين",
+               type: "line",
+               data:  {{ $data['job_staff_count']  }},
+            }],
+            colors: colors,
+            fill: {
+               type: "solid",
+               opacity: [1, 1]
+            },
+            labels: {!! $data['job_staff_names'] !!},
+            markers: {
+               size: 0
+            },
+            yaxis: [ {
+               title: {
+                  text: "العدد"
+               }
+            }],
+            tooltip: {
+               shared: !0,
+               intersect: !1,
+               y: {
+                  formatter: function (e) {
+                     return void 0 !== e ? e.toFixed(0) + "" : e
+                  }
+               }
+            },
+            legend: {
+               offsetY: 7
+            }
+         };
+         (chart = new ApexCharts(document.querySelector("#apex-mixed-12"), options)).render();
          colors = ["#1abc9c"];
          (dataColors = $("#apex-bar-1").data("colors")) && (colors = dataColors.split(","));
          options = {

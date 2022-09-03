@@ -358,9 +358,9 @@
                                 });
                             }
 
-                            $('.regionCount  span').text(response.region_teacher_count);
-                            $('.managementCount  span').text(response.management_teacher_count);
-                            $('.instituteCount  span').text(response.institute_teacher_count);
+                            $('.regionCount span').text(response.region_teacher_count);
+                            $('.managementCount span').text(response.management_teacher_count);
+                            $('.instituteCount span').text(response.institute_teacher_count);
                             if (!check_management_selected) {
                                 $('.subjects').empty();
                                 $('.qualifications').empty();
