@@ -14,15 +14,14 @@ class FullSummaryController extends Controller
 
     public function index()
     {
-
-        if (!auth()->user()->idAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             if (auth()->user()->active_region == 1) {
-                $data['region_selected'] =  Region::where('code',auth()->user()->region_code)->first();
+                $data['region_selected'] = auth()->user()->region_code;
             } elseif (auth()->user()->active_management == 1) {
-                $data['region_selected'] =  Region::where('code',auth()->user()->region_code)->first();
+                $data['region_selected'] = auth()->user()->region_code;
                 $data['management_selected'] =  true;
             } else {
-                $data['region_selected'] =  Region::where('code',auth()->user()->region_code)->first();
+                $data['region_selected'] = auth()->user()->region_code;
                 $data['management_selected'] =  true;
                 $data['institute_selected'] =  true;
             }
@@ -39,18 +38,19 @@ class FullSummaryController extends Controller
     }
 
     public function fetch_summary_from_region(Request $request){
-        if (!auth()->user()->idAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             if (auth()->user()->active_management == 1) {
-                $data['management_selected'] =  Management::where('code',auth()->user()->management_code)->first()->code;
+                $data['management_selected'] = auth()->user()->management_code;
             } elseif (auth()->user()->active_management != 1 && auth()->user()->active_region != 1) {
-                $data['management_selected'] =  Management::where('code',auth()->user()->management_code)->first()->code;
+                $data['management_selected'] = auth()->user()->management_code;
+                $data['institute_selected'] = true;
             }
         }
         if($request->region_code == "all"){
             $data['managements'] = Management::pluck('code', 'name');
             $data['region_teacher_count'] =  Teacher::count();
-            $data['management_teacher_count'] =  0;
-            $data['institute_teacher_count'] =  0;
+            $data['management_teacher_count'] =  '---';
+            $data['institute_teacher_count'] =  '---';
             $data['subjects'] = Teacher::groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
@@ -72,12 +72,11 @@ class FullSummaryController extends Controller
             $data['jobs'] = Teacher::groupBy('job_name')
             ->selectRaw('count(*) as total, job_name')
             ->pluck('total','job_name');
-
         }else{
             $data['managements'] = Management::where('region_code', $request->region_code)->pluck('code', 'name');
             $data['region_teacher_count'] =  Teacher::where('region_code',$request->region_code)->count();
-            $data['management_teacher_count'] =  0;
-            $data['institute_teacher_count'] =  0;
+            $data['management_teacher_count'] =  '---';
+            $data['institute_teacher_count'] =  '---';
             $data['subjects'] = Teacher::where('region_code',$request->region_code)->groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
@@ -105,7 +104,7 @@ class FullSummaryController extends Controller
     }
 
     public function fetch_summary_from_management(Request $request){
-        if (!auth()->user()->idAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             if (auth()->user()->active_management != 1 && auth()->user()->active_region != 1) {
                  $data['institute_selected'] =  Institute::where('code',auth()->user()->institute_code)->first()->code;
             }
@@ -117,10 +116,12 @@ class FullSummaryController extends Controller
                 $data['region_teacher_count'] =  Teacher::where('region_code',$request->region_code)->count();
             }
             $data['management_teacher_count'] = Teacher::where('management_code',$request->management_code)->count();
-            $data['institute_teacher_count'] =  0;
+            $data['institute_teacher_count'] =  '---';
+
             $data['subjects'] = Teacher::where('management_code',$request->management_code)->groupBy('subject')
             ->selectRaw('count(*) as total, subject')
             ->pluck('total','subject');
+
             $data['qualifications'] = Teacher::where('management_code',$request->management_code)->groupBy('qualification_name')
             ->selectRaw('count(*) as total, qualification_name')
             ->pluck('total','qualification_name');
@@ -140,18 +141,11 @@ class FullSummaryController extends Controller
             ->selectRaw('count(*) as total, job_name')
             ->pluck('total','job_name');
 
-
-
-
         return $data;
     }
 
     public function fetch_summary_from_institute(Request $request){
-        if (!auth()->user()->idAdmin()) {
-            if (auth()->user()->active_management != 1 && auth()->user()->active_region != 1) {
-                 $data['institute_selected'] =  Institute::where('code',auth()->user()->institute_code)->first()->code;
-            }
-        }
+    
             $data['institutes'] = Institute::where('management_code',$request->management_code)->pluck('code', 'name');
             if($request->region_code == 'all'){
                 $data['region_teacher_count'] =  Teacher::count();

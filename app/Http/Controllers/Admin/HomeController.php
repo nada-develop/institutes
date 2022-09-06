@@ -15,7 +15,7 @@ class HomeController
     public function index()
     {
 
-        // if (!auth()->user()->idAdmin()) {
+        // if (!auth()->user()->isAdmin()) {
         //     if (auth()->user()->active_region == 1) {
         //         $data['region_selected'] =  Region::where('code',auth()->user()->region_code)->first();
         //     } elseif (auth()->user()->active_management == 1) {
@@ -43,7 +43,7 @@ class HomeController
 
 
 
-        if (!auth()->user()->idAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             if (auth()->user()->active_region == 1) {
                 $data['managements'] = Management::where('region_code', auth()->user()->region_code)->pluck('code', 'name');
                 $data['region_teacher_count'] =  Teacher::where('region_code',auth()->user()->region_code)->count();

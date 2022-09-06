@@ -19,12 +19,12 @@
                                     <label for="" class="mb-1">المناطق</label>
                                     <select class="form-control {{ $errors->has('region') ? 'is-invalid' : '' }}"
                                         data-toggle="select2" name="region" id="region"
-                                        @if (!auth()->user()->idAdmin() && isset($data['region_selected'])) disabled @endif required>
-                                        <option value="all" @if (isset($data['region_selected']) && $data['region_selected'] == 'all') selected @endif>الكل
+                                        @if (!auth()->user()->isAdmin() && $data['region_selected']) disabled @endif required>
+                                        <option value="all" @if ($data['region_selected'] == 'all') selected @endif>الكل
                                         </option>
                                         @foreach ($data['regions'] as $region)
                                             <option
-                                                @if (isset($data['region_selected']) && $data['region_selected'] != 'all') @if ($data['region_selected']->code == $region->code) selected @endif
+                                                @if ($data['region_selected'] != 'all') @if ($data['region_selected'] == $region->code) selected @endif
                                                 @endif value="{{ $region->code }}">{{ $region->name }}
                                             </option>
                                         @endforeach
@@ -37,7 +37,7 @@
                                     <label for="" class="mb-1">الادارات</label>
                                     <select class="form-control {{ $errors->has('management') ? 'is-invalid' : '' }}"
                                         data-toggle="select2" name="management" id="management"
-                                        @if (!auth()->user()->idAdmin() && isset($data['management_selected'])) disabled @endif required>
+                                        @if (!auth()->user()->isAdmin() && isset($data['management_selected'])) disabled @endif required>
 
                                     </select>
                                 </div>
@@ -47,7 +47,7 @@
                                     <label for="" class="mb-1">المعاهد</label>
                                     <select class="form-control {{ $errors->has('institute') ? 'is-invalid' : '' }}"
                                         data-toggle="select2" name="institute" id="institute"
-                                        @if (!auth()->user()->idAdmin() && isset($data['institute_selected'])) disabled @endif required>
+                                        @if (!auth()->user()->isAdmin() && isset($data['institute_selected'])) disabled @endif required>
 
                                     </select>
                                 </div>
@@ -344,9 +344,6 @@
                                         $('#management').append(
                                             `<option value="${code}" selected> ${name}</option>`
                                         );
-                                    } else {
-                                        $('#management').append(
-                                            `<option value="${code}" > ${name}</option>`);
                                     }
                                 });
                                 check_management_selected = true;
@@ -361,7 +358,7 @@
                             $('.regionCount span').text(response.region_teacher_count);
                             $('.managementCount span').text(response.management_teacher_count);
                             $('.instituteCount span').text(response.institute_teacher_count);
-                            if (!check_management_selected) {
+                         if (!check_management_selected) {
                                 $('.subjects').empty();
                                 $('.qualifications').empty();
                                 $('.job_attitudes').empty();
@@ -510,7 +507,7 @@
 
                                 });
                                 $('.search-loader').addClass('d-none');
-                            }
+                             }
                         }
                     },
                 });
@@ -530,20 +527,13 @@
                     success: function(response) {
                         $('#institute').find('option').remove();
                         if (response.length != 0) {
-                            if (check_management_selected) {
-                                $('#institute').append(`<option value="all"> الكل </option>`);
-                            } else {
-                                $('#institute').append(`<option selected disabled> اختر المعهد </option>`);
-                            }
+                            $('#institute').append(`<option value="all"> الكل </option>`);
                             if (response.institute_selected !== undefined) {
                                 $.each(response.institutes, function(name, code) {
                                     if (response.institute_selected == code) {
                                         $('#institute').append(
                                             `<option value="${code}" selected> ${name}</option>`
                                         );
-                                    } else {
-                                        $('#institute').append(
-                                            `<option value="${code}" > ${name}</option>`);
                                     }
                                 });
                                 check_institute_selected = true;
@@ -887,6 +877,14 @@
                 });
             });
 
+            $(document).on('keyup', '#subject_search', function() {
+                var filter, txtValue;
+                txtValue = $(this).val().toLowerCase();
+                $(".subjects .inbox-item").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
+                });
+            });
+
             $(document).on('keyup', '#qualification_search', function() {
                 var filter, ul, li, a, i, txtValue;
                 txtValue = $(this).val().toLowerCase();
@@ -894,13 +892,7 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
                 });
             });
-            $(document).on('keyup', '#subject_search', function() {
-                var filter, ul, li, a, i, txtValue;
-                txtValue = $(this).val().toLowerCase();
-                $(".subjects .inbox-item").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(txtValue) > -1)
-                });
-            });
+
             $(document).on('keyup', '#job_attitude_search', function() {
                 var filter, ul, li, a, i, txtValue;
                 txtValue = $(this).val().toLowerCase();
