@@ -110,6 +110,23 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 25,
                 'title' => 'summary_management_access',
             ],
+            [
+                'id'    => 26,
+                'title' => 'summary_institute_access',
+            ],
+            [
+                'id'    => 27,
+                'title' => 'summary_region_access',
+            ],
+            [
+                'id'    => 28,
+                'title' => 'summary_full_access',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'reports_access',
+            ],
+
 
         ];
 

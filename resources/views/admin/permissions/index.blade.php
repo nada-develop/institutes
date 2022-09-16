@@ -2,11 +2,11 @@
 @section('content')
 @can('permission_create')
     <div style="margin-bottom: 10px;" class="row mt-2">
-        <div class="col-lg-12">
+        {{--  <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.permissions.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}
             </a>
-        </div>
+        </div>  --}}
     </div>
 @endcan
 <div class="card">
@@ -57,7 +57,7 @@
                                         </a>
                                     @endcan
 
-                                    @can('permission_edit')
+                                    {{--  @can('permission_edit')
                                         <a class="btn btn-xs btn-info" href="{{ route('admin.permissions.edit', $permission->id) }}">
                                             {{ trans('global.edit') }}
                                         </a>
@@ -69,7 +69,7 @@
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                         </form>
-                                    @endcan
+                                    @endcan  --}}
 
                                 </td>
 

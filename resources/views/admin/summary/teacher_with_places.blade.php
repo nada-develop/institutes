@@ -9,10 +9,10 @@
                 <div class="row">
 
                     <div class="search-loader d-none">
-                        <div  class="la-ball-clip-rotate-multiple la-2x loader-spinner">
-                          <div></div>
-                          <div></div>
-                      </div>
+                        <div class="la-ball-clip-rotate-multiple la-2x loader-spinner">
+                            <div></div>
+                            <div></div>
+                        </div>
                     </div>
                     <div class="col-md-3">
 
@@ -20,9 +20,16 @@
                             <label for="" class="mb-1">المناطق</label>
                             <select class="form-control {{ $errors->has('region') ? 'is-invalid' : '' }}"
                                 data-toggle="select2" name="region" id="region" required>
-                                <option value="all" selected>جميع المناطق</option>
+                                @if (auth()->user()->isAdmin())
+                                    <option value="all" selected>جميع المناطق</option>
+                                @endif
                                 @foreach ($data['regions'] as $region)
-                                    <option @if( (isset($data['region_selected']) ? ($data['region_selected'] != 'all' ? $data['region_selected']->code : '') : '') == $region->code) selected @endif  value="{{ $region->code }}">{{ $region->name }} </option>
+                                    <option @if ((isset($data['region_selected'])
+                                        ? ($data['region_selected'] != 'all'
+                                            ? $data['region_selected']->code
+                                            : '')
+                                        : '') == $region->code) selected @endif value="{{ $region->code }}">
+                                        {{ $region->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -35,7 +42,12 @@
                                 data-toggle="select2" name="subject" id="subject" required>
                                 <option value="all" selected>جميع التخصصات</option>
                                 @foreach ($data['subjects'] as $subject)
-                                    <option @if(  (isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : '') : '') == $subject->code) selected @endif  value="{{ $subject->code }}">{{ $subject->name }} </option>
+                                    <option @if ((isset($data['subject_selected'])
+                                        ? ($data['subject_selected'] != 'all'
+                                            ? $data['subject_selected']->code
+                                            : '')
+                                        : '') == $subject->code) selected @endif value="{{ $subject->code }}">
+                                        {{ $subject->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -44,11 +56,11 @@
                         <button class="btn btn-primary mt-3" type="submit">
                             بحث
                         </button>
-                        @if(isset($data['region_selected']))
-
-                        <a href="{{ URL('/admin/print-teacher-with-places?region='.(isset($data['region_selected']) ? ($data['region_selected'] != 'all' ? $data['region_selected']->code : 'all') : 'all').'&subject='.(isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : 'all') : 'all')) }}" class="btn btn-primary mt-3" >
-                            طباعة
-                        </a>
+                        @if (isset($data['region_selected']))
+                            <a href="{{ URL('/admin/print-teacher-with-places?region=' . (isset($data['region_selected']) ? ($data['region_selected'] != 'all' ? $data['region_selected']->code : 'all') : 'all') . '&subject=' . (isset($data['subject_selected']) ? ($data['subject_selected'] != 'all' ? $data['subject_selected']->code : 'all') : 'all')) }}"
+                                class="btn btn-primary mt-3">
+                                طباعة
+                            </a>
                         @endif
                     </div>
                 </div>
@@ -64,29 +76,31 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h3 class="mb-3"> حصر عام بأعداد المعملين مقسمة لمناطق بالتخصصات المختلفة</h3>
-                                            @if(isset($data['region_selected']))
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered mb-0" >
-                                                    <thead>
-                                                        <tr>
-                                                            <th>المنطقة</th>
-                                                            <th>التخصصات</th>
-                                                            <th>عدد المعلمين</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
+                                            @if (isset($data['region_selected']))
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>المنطقة</th>
+                                                                <th>التخصصات</th>
+                                                                <th>عدد المعلمين</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
 
-                                                            <td>{{ $data['region_selected'] != 'all' ? $data['region_selected']->name : 'الكل' }}</td>
-                                                            <td>{{ $data['subject_selected'] != 'all' ? $data['subject_selected']->name : 'الكل'}}</td>
-                                                            <td>{{ $data['teacher_count'] }}</td>
-                                                        </tr>
+                                                                <td>{{ $data['region_selected'] != 'all' ? $data['region_selected']->name : 'الكل' }}
+                                                                </td>
+                                                                <td>{{ $data['subject_selected'] != 'all' ? $data['subject_selected']->name : 'الكل' }}
+                                                                </td>
+                                                                <td>{{ $data['teacher_count'] }}</td>
+                                                            </tr>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             @else
-                                                <h5 >من فضلك اختر المنطقة</h5>
+                                                <h5>من فضلك اختر المنطقة</h5>
                                             @endif
                                         </div>
                                     </div> <!-- end card -->
@@ -97,26 +111,29 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div>
-            @if(isset($data['teachers']))
-            <div class="row">
-                <div class="card">
-                    <div class="card-header">
-                        قائمة المعلمين
-                    </div>
-                    <div class="card-body">
-                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            @if (isset($data['teachers']))
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            قائمة المعلمين
+                        </div>
+                        <div class="card-body">
+                            <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
-                            {{-- Table length filter --}}
-                            @include('partials.pagination_data_filter')
+                                {{-- Table length filter --}}
+                                @include('partials.pagination_data_filter')
 
-                            {{-- Table content --}}
-                            <div id="table-data" class="table-responsive">
-                                @include('admin.summary.teacher_with_places_data', ['region' => request()->get('region') ,'subject'=> request()->get('subject')])
+                                {{-- Table content --}}
+                                <div id="table-data" class="table-responsive">
+                                    @include('admin.summary.teacher_with_places_data', [
+                                        'region' => request()->get('region'),
+                                        'subject' => request()->get('subject'),
+                                    ])
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{--  <div class="card-body">
+                        {{-- <div class="card-body">
                         <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
 
@@ -172,10 +189,10 @@
 
                             </div>
                         </div>
-                    </div>  --}}
+                    </div> --}}
 
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

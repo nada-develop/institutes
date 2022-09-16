@@ -76,44 +76,86 @@
                             </div>
                         </li>
                     @endcan
-                    <li>
-                        <a href="#reports" data-bs-toggle="collapse">
-                            <i data-feather="users"></i>
-                            <span> التقارير </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="reports">
-                            <ul class="nav-second-level">
-
-                                {{--  @can('summary_management_access')  --}}
-                                    <li>
-                                        <a href="{{ route('admin.summary') }}">
-                                            <i data-feather="bar-chart"></i>
-                                            <span> تحليل المعاهد</span>
-                                        </a>
-                                    </li>
-                                    {{--  @endcan  --}}
-                                    <li>
-                                        <a href="{{ route('admin.teacher_with_places') }}">
-                                            <i data-feather="bar-chart"></i>
-                                            <span>المعلمين مقسمة لمناطق بالتخصصات</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('admin.teacher_with_managements') }}">
-                                            <i data-feather="bar-chart"></i>
-                                            <span>المعلمين مقسمة لإدارات بالتخصصات</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('admin.teacher_with_institutes') }}">
-                                            <i data-feather="bar-chart"></i>
-                                            <span>المعلمين مقسمة لمعاهد بالتخصصات</span>
-                                        </a>
-                                    </li>
+                    @can('reports_access')
+                        <li>
+                            <a href="#reports" data-bs-toggle="collapse">
+                                <i data-feather="users"></i>
+                                <span> التقارير </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="reports">
+                                <ul class="nav-second-level">
+                                    @can('summary_full_access')
+                                        <li>
+                                            <a href="{{ route('admin.summary') }}">
+                                                <i data-feather="bar-chart"></i>
+                                                <span> تحليل المعاهد</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('summary_region_access')
+                                        @if (!auth()->user()->isAdmin())
+                                            @if (auth()->user()->active_region == 1)
+                                                <li>
+                                                    <a href="{{ route('admin.teacher_with_places') }}">
+                                                        <i data-feather="bar-chart"></i>
+                                                        <span>المعلمين مقسمة لمناطق بالتخصصات</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li>
+                                                <a href="{{ route('admin.teacher_with_places') }}">
+                                                    <i data-feather="bar-chart"></i>
+                                                    <span>المعلمين مقسمة لمناطق بالتخصصات</span>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endcan
+                                    @can('summary_management_access')
+                                        @if (!auth()->user()->isAdmin())
+                                            @if (auth()->user()->active_region == 1 || auth()->user()->active_management == 1)
+                                                <li>
+                                                    <a href="{{ route('admin.teacher_with_managements') }}">
+                                                        <i data-feather="bar-chart"></i>
+                                                        <span>المعلمين مقسمة لإدارات بالتخصصات</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li>
+                                                <a href="{{ route('admin.teacher_with_managements') }}">
+                                                    <i data-feather="bar-chart"></i>
+                                                    <span>المعلمين مقسمة لإدارات بالتخصصات</span>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endcan
+                                    @can('summary_institute_access')
+                                        @if (!auth()->user()->isAdmin())
+                                            @if (auth()->user()->active_region == 1 ||
+                                                auth()->user()->active_management == 1 ||
+                                                (auth()->user()->active_region != 1 && auth()->user()->active_management != 1))
+                                                <li>
+                                                    <a href="{{ route('admin.teacher_with_institutes') }}">
+                                                        <i data-feather="bar-chart"></i>
+                                                        <span>المعلمين مقسمة لمعاهد بالتخصصات</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li>
+                                                <a href="{{ route('admin.teacher_with_institutes') }}">
+                                                    <i data-feather="bar-chart"></i>
+                                                    <span>المعلمين مقسمة لمعاهد بالتخصصات</span>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endcan
                                 </ul>
                             </div>
-                    </li>
+                        </li>
+                    @endcan
                     @can('teacher_access')
                         <li>
                             <a href="{{ route('admin.teachers.index') }}">

@@ -59,11 +59,9 @@
                 </form>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class=" col-xl-3 col-md-12">
                     <div class="row summary-count ">
-
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
@@ -86,8 +84,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
@@ -110,8 +107,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
@@ -133,12 +129,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <h5 class=" mt-0 mb-1">اجمالى عدد المعلمين ({{ $teacherCount  }})</h5>
                             <p class="mb-1">عدد المعلمين فى كل من</p>
                         </div>
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
@@ -161,8 +156,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
@@ -185,8 +179,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 col-xl-12">
+                        <div class="col-12">
                             <div class="widget-rounded-circle card">
                                 <div class="card-body">
                                     <div class="row">
