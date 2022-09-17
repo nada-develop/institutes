@@ -383,14 +383,14 @@
                 series: [{
                     name: "عدد المعلمين",
                     type: "line",
-                    data: {{ $data['jobs_count'] }},
+                    data: {{ $data['qualifications_count'] }},
                 }],
                 colors: colors,
                 fill: {
                     type: "solid",
                     opacity: [1, 1]
                 },
-                labels: {!! $data['jobs_names'] !!},
+                labels: {!! $data['qualifications_names'] !!},
                 markers: {
                     size: 0
                 },
