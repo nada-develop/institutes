@@ -35,6 +35,7 @@ class RolesController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $role = Role::create($request->all());
+
         $role->permissions()->sync($request->input('permissions', []));
 
         return redirect()->route('admin.roles.index');
@@ -80,7 +81,6 @@ class RolesController extends Controller
     public function massDestroy(MassDestroyRoleRequest $request)
     {
         Role::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
+        return back();
     }
 }

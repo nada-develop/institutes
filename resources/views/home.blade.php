@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="avatar-lg rounded bg-soft-primary">
+                                    <div class="avatar-lg rounded bg-soft-primary card9090">
                                         <i class="dripicons-view-thumb font-24 avatar-title text-primary"></i>
                                     </div>
                                 </div>
@@ -113,8 +113,7 @@
                             <h4 class="header-title mb-0"> الموقف من العمل</h4>
 
                             <div id="cardCollpase19" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-pie-123" class="apex-charts"
-                                    data-colors="#cea120,#4fc6e1,#705915,#00b19d,#f1556c"></div>
+                                <div id="apex-pie-123" class="apex-charts"></div>
                             </div>
                         </div>
                     </div>
@@ -133,7 +132,7 @@
 
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-128" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-128" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -142,7 +141,7 @@
             </div>
             <div class="row">
                 {{-- الكفاءه --}}
-                {{--  <div class="col-xl-4 col-differ">
+                {{-- <div class="col-xl-4 col-differ">
                     <div class="card chart">
                         <div class="card-body">
                             <div class="card-widgets">
@@ -155,24 +154,25 @@
 
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-127" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-127" class="apex-charts" ></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
-                </div>  --}}
+                </div> --}}
                 <div class="col-xl-4">
                     <!-- Portlet card -->
                     <div class="card">
                         <div class="card-body">
                             <div class="card-widgets">
                                 <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
-                                <a data-bs-toggle="collapse" href="#cardCollpase18" role="button" aria-expanded="false" aria-controls="cardCollpase18"><i class="mdi mdi-minus"></i></a>
+                                <a data-bs-toggle="collapse" href="#cardCollpase18" role="button" aria-expanded="false"
+                                    aria-controls="cardCollpase18"><i class="mdi mdi-minus"></i></a>
                                 <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                             </div>
-                            <h4 class="header-title mb-0">  الكفاءه</h4>
+                            <h4 class="header-title mb-0"> الكفاءه</h4>
 
                             <div id="cardCollpase18" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-pie-155" class="apex-charts" data-colors="#6658dd,#4fc6e1,#4a81d4,#00b19d,#f1556c"></div>
+                                <div id="apex-pie-155" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -191,7 +191,7 @@
                             <h4 class="header-title mb-0"> المجموعة النوعية</h4>
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-126" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-126" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -213,7 +213,7 @@
 
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-125" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-125" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -234,7 +234,7 @@
                             <h4 class="header-title mb-0"> المؤهلات</h4>
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-124" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-124" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -255,7 +255,7 @@
                             <h4 class="header-title mb-0"> الوظيفة</h4>
 
                             <div id="cardCollpase7" class="collapse pt-3 show" dir="ltr">
-                                <div id="apex-mixed-129" class="apex-charts" data-colors="#cea120,#cea120"></div>
+                                <div id="apex-mixed-129" class="apex-charts"></div>
                             </div> <!-- collapsed end -->
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
@@ -288,19 +288,59 @@
                 sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19,
                     46
                 ],
-                colorPalette = ["#00D8B6", "#008FFB", "#FEB019", "#FF4560", "#775DD0"],
 
 
-                colors = ["#cea120", "#cea120"];
+                // الموقف من العمل
+                options = {
+                    chart: {
+                        height: 320,
+                        type: "donut"
+                    },
+                    colors: ['#F44336', '#cea120', '#9C27B0', '#cea120', '#3ac3a8'],
+                    series: {{ $data['job_attitudes_count'] }},
+                    legend: {
+                        show: !0,
+                        position: "bottom",
+                        horizontalAlign: "center",
+                        verticalAlign: "middle",
+                        floating: !1,
+                        fontSize: "14px",
+                        offsetX: 0,
+                        offsetY: 7
+                    },
+                    grid: {
+                        padding: {
+                            left: 20,
+                            right: 20
+                        }
+                    },
+                    labels: {!! $data['job_attitudes_names'] !!},
+                    responsive: [{
+                        breakpoint: 600,
+                        options: {
+                            chart: {
+                                height: 240
+                            },
+                            legend: {
+                                show: !1
+                            }
+                        }
+                    }],
+                    fill: {
+                        type: "gradient"
+                    }
+                };
+            (chart = new ApexCharts(document.querySelector("#apex-pie-123"), options)).render();
 
-            colors = ["#cea120", "#cea120", "#cea120", "#cea120", "#cea120"];
-            (dataColors = $("#apex-pie-123").data("colors")) && (colors = dataColors.split(","));
+            // الكفاءه
             options = {
                 chart: {
                     height: 320,
-                    type: "donut"
+                    type: "pie"
                 },
-                series: {{ $data['job_attitudes_count'] }},
+                colors: ['#F44336', '#E91E63', '#9C27B0', '#cea120', '#3ac3a8'],
+                series: {{ $data['efficiencies_count'] }},
+                labels: {!! $data['efficiencies_names'] !!},
                 legend: {
                     show: !0,
                     position: "bottom",
@@ -311,14 +351,6 @@
                     offsetX: 0,
                     offsetY: 7
                 },
-                grid: {
-                    padding: {
-                      left: 20,
-                      right: 20
-                    }
-                  },
-                labels: {!! $data['job_attitudes_names'] !!},
-                colors: colors,
                 responsive: [{
                     breakpoint: 600,
                     options: {
@@ -329,53 +361,187 @@
                             show: !1
                         }
                     }
-                }],
-                fill: {
-                    type: "gradient"
-                }
-            };
-            (chart = new ApexCharts(document.querySelector("#apex-pie-123"), options)).render();
-
-            // الكفاءه
-            (dataColors = $("#apex-pie-155").data("colors")) && (colors = dataColors.split(","));
-            options = {
-               chart: {
-                  height: 320,
-                  type: "pie"
-               },
-               series: {{ $data['efficiencies_count'] }},
-               labels:  {!! $data['efficiencies_names'] !!},
-               colors: colors,
-               legend: {
-                  show: !0,
-                  position: "bottom",
-                  horizontalAlign: "center",
-                  verticalAlign: "middle",
-                  floating: !1,
-                  fontSize: "14px",
-                  offsetX: 0,
-                  offsetY: 7
-               },
-               responsive: [{
-                  breakpoint: 600,
-                  options: {
-                     chart: {
-                        height: 240
-                     },
-                     legend: {
-                        show: !1
-                     }
-                  }
-               }]
+                }]
             };
             (chart = new ApexCharts(document.querySelector("#apex-pie-155"), options)).render();
 
-            (dataColors = $("#apex-mixed-124").data("colors"));
+            //المجموعه النوعية
             options = {
                 chart: {
                     height: 290,
                     type: "line"
                 },
+                colors: ['#cea120'],
+                stroke: {
+                    width: 5,
+                    curve: "smooth"
+                },
+                series: [{
+                    name: "عدد المعلمين",
+                    type: "line",
+                    data: {{ $data['group_types_count'] }},
+                }],
+                fill: {
+                    type: "solid",
+                    opacity: [1, 1]
+                },
+                labels: {!! $data['group_types_names'] !!},
+                markers: {
+                    {{-- colors: ['#9c94e9'],
+                    size: 8, --}}
+                },
+                yaxis: [{
+                    title: {
+                        text: "العدد"
+                    }
+                }],
+
+                tooltip: {
+                    shared: !0,
+                    intersect: !1,
+                    y: {
+                        formatter: function(e) {
+                            return void 0 !== e ? e.toFixed(0) + "" : e
+                        }
+                    }
+                },
+                legend: {
+                    offsetY: 7
+                },
+                grid: {
+                    padding: {
+                        left: 20,
+                        right: 20
+                    }
+                }
+
+            };
+            (chart = new ApexCharts(document.querySelector("#apex-mixed-126"), options)).render();
+
+            // الوظيفه ع الكادر
+            options = {
+                chart: {
+                    height: 290,
+                    type: "line"
+                },
+                colors: ['#cea120'],
+                stroke: {
+                    width: 5,
+                    curve: "smooth"
+                },
+                dataLabels: {
+                    {{-- enabled: true,
+                    style: {
+                        colors: ['#b9911d']
+                    } --}}
+
+                },
+                series: [{
+                    name: "عدد المعلمين",
+                    type: "line",
+                    data: {{ $data['job_staff_count'] }},
+                }],
+                fill: {
+                    type: "solid",
+                    opacity: [1, 1]
+                },
+                labels: {!! $data['job_staff_names'] !!},
+                markers: {
+                    {{-- colors: ['#b9911d'],
+                    size: 5, --}}
+                },
+                yaxis: [{
+                    title: {
+                        text: "العدد"
+                    }
+                }],
+                tooltip: {
+                    shared: !0,
+                    intersect: !1,
+                    y: {
+                        formatter: function(e) {
+                            return void 0 !== e ? e.toFixed(0) + "" : e
+                        }
+                    }
+                },
+                legend: {
+                    offsetY: 7
+                },
+                grid: {
+                    padding: {
+                        left: 20,
+                        right: 20
+                    }
+                }
+            };
+            (chart = new ApexCharts(document.querySelector("#apex-mixed-128"), options)).render();
+
+            // التخصصات
+            options = {
+                chart: {
+                    height: 290,
+                    type: "line",
+                },
+                colors: ['#cea120'],
+                stroke: {
+                    width: 5,
+                    curve: "smooth"
+                },
+                dataLabels: {
+                    {{-- enabled: true,
+                        style: {
+                            colors: ['#9c94e9']
+                        } --}}
+                },
+                series: [{
+                    name: "عدد المعلمين",
+                    type: "line",
+                    data: {{ $data['subjects_count'] }},
+                }],
+                fill: {
+                    colors: ['#F44336', '#E91E63', '#9C27B0'],
+                    type: "solid",
+                    opacity: [1, 1]
+                },
+
+                labels: {!! $data['subjects_names'] !!},
+                markers: {
+                    size: 0
+                },
+                yaxis: [{
+                    title: {
+                        text: "العدد"
+                    }
+                }],
+
+                tooltip: {
+                    shared: !0,
+                    intersect: !1,
+                    y: {
+                        formatter: function(e) {
+                            return void 0 !== e ? e.toFixed(0) + "" : e
+                        }
+                    }
+                },
+                legend: {
+                    offsetY: 7
+                },
+                grid: {
+                    padding: {
+                        left: 20,
+                        right: 20
+                    }
+                }
+            };
+            (chart = new ApexCharts(document.querySelector("#apex-mixed-125"), options)).render();
+
+            // المؤهل
+            options = {
+                chart: {
+                    height: 290,
+                    type: "line"
+                },
+                colors: ['#cea120'],
                 stroke: {
                     width: 5,
                     curve: "smooth"
@@ -385,7 +551,6 @@
                     type: "line",
                     data: {{ $data['qualifications_count'] }},
                 }],
-                colors: colors,
                 fill: {
                     type: "solid",
                     opacity: [1, 1]
@@ -396,10 +561,10 @@
                 },
                 grid: {
                     padding: {
-                      left: 20,
-                      right: 20
+                        left: 20,
+                        right: 20
                     }
-                  },
+                },
                 yaxis: [{
                     title: {
                         text: "العدد"
@@ -418,15 +583,15 @@
                     offsetY: 7
                 }
             };
-
             (chart = new ApexCharts(document.querySelector("#apex-mixed-124"), options)).render();
-            colors = ["#cea120", "#cea120"];
-            (dataColors = $("#apex-mixed-129").data("colors"));
+
+            // الوظيفة
             options = {
                 chart: {
                     height: 290,
                     type: "line"
                 },
+                colors: ['#cea120'],
                 stroke: {
                     width: 2,
                     curve: "smooth"
@@ -436,7 +601,6 @@
                     type: "line",
                     data: {{ $data['jobs_count'] }},
                 }],
-                colors: colors,
                 fill: {
                     type: "solid",
                     opacity: [1, 1]
@@ -460,16 +624,16 @@
                     onDblClick: undefined,
                     showNullDataPoints: true,
                     hover: {
-                      size: undefined,
-                      sizeOffset: 3
+                        size: undefined,
+                        sizeOffset: 3
                     }
                 },
                 grid: {
                     padding: {
-                      left: 20,
-                      right: 20
+                        left: 20,
+                        right: 20
                     }
-                  },
+                },
                 yaxis: [{
                     title: {
                         text: "العدد"
@@ -489,117 +653,8 @@
                 }
             };
             (chart = new ApexCharts(document.querySelector("#apex-mixed-129"), options)).render();
-            (dataColors = $("#apex-mixed-126").data("colors"));
-            options = {
-                chart: {
-                    height: 290,
-                    type: "line"
-                },
-                stroke: {
-                    width: 5,
-                    curve: "smooth"
-                },
-                series: [{
-                    name: "عدد المعلمين",
-                    type: "line",
-                    data: {{ $data['group_types_count'] }},
-                }],
-                colors: colors,
-                fill: {
-                    type: "solid",
-                    opacity: [1, 1]
-                },
-                labels: {!! $data['group_types_names'] !!},
-                markers: {
-                    {{--  colors: ['#9c94e9'],
-                    size: 8,  --}}
-                },
-                yaxis: [{
-                    title: {
-                        text: "العدد"
-                    }
-                }],
 
-                tooltip: {
-                    shared: !0,
-                    intersect: !1,
-                    y: {
-                        formatter: function(e) {
-                            return void 0 !== e ? e.toFixed(0) + "" : e
-                        }
-                    }
-                },
-                legend: {
-                    offsetY: 7
-                },
-                grid: {
-                    padding: {
-                      left: 20,
-                      right: 20
-                    }
-                  }
-
-            };
-            (chart = new ApexCharts(document.querySelector("#apex-mixed-126"), options)).render();
-            colors = ["#cea120", "#CED4DC"];
-            (dataColors = $("#apex-mixed-128").data("colors"));
-            options = {
-                chart: {
-                    height: 290,
-                    type: "line"
-                },
-                stroke: {
-                    width: 5,
-                    curve: "smooth"
-                },
-                dataLabels: {
-                    {{--  enabled: true,
-                    style: {
-                        colors: ['#b9911d']
-                    }  --}}
-
-                },
-                series: [{
-                    name: "عدد المعلمين",
-                    type: "line",
-                    data: {{ $data['job_staff_count'] }},
-                }],
-                colors: colors,
-                fill: {
-                    type: "solid",
-                    opacity: [1, 1]
-                },
-                labels: {!! $data['job_staff_names'] !!},
-                markers: {
-                    {{--  colors: ['#b9911d'],
-                    size: 5,  --}}
-                },
-                yaxis: [{
-                    title: {
-                        text: "العدد"
-                    }
-                }],
-                tooltip: {
-                    shared: !0,
-                    intersect: !1,
-                    y: {
-                        formatter: function(e) {
-                            return void 0 !== e ? e.toFixed(0) + "" : e
-                        }
-                    }
-                },
-                legend: {
-                    offsetY: 7
-                },
-                grid: {
-                    padding: {
-                      left: 20,
-                      right: 20
-                    }
-                  }
-            };
-            (chart = new ApexCharts(document.querySelector("#apex-mixed-128"), options)).render();
-            (dataColors = $("#apex-mixed-127").data("colors"));
+            // الكفاءه
             options = {
                 chart: {
                     height: 290,
@@ -621,8 +676,8 @@
                 },
                 labels: {!! $data['efficiencies_names'] !!},
                 markers: {
-                     {{--  colors: ['#9c94e9'],
-                    size: 8,  --}}
+                    {{-- colors: ['#9c94e9'],
+                    size: 8, --}}
                 },
                 yaxis: [{
                     title: {
@@ -643,71 +698,11 @@
                 },
                 grid: {
                     padding: {
-                      left: 20,
-                      right: 20
+                        left: 20,
+                        right: 20
                     }
-                  }
+                }
             };
             (chart = new ApexCharts(document.querySelector("#apex-mixed-127"), options)).render();
-
-
-            (dataColors = $("#apex-mixed-125").data("colors"));
-            options = {
-                chart: {
-                    height: 290,
-                    type: "line",
-                },
-                stroke: {
-                    width: 5,
-                    curve: "smooth"
-                },
-                dataLabels: {
-                    {{--  enabled: true,
-                    style: {
-                        colors: ['#9c94e9']
-                    }  --}}
-                },
-                series: [{
-                    name: "عدد المعلمين",
-                    type: "line",
-                    data: {{ $data['subjects_count'] }},
-                }],
-                colors: colors,
-                fill: {
-                    colors: ['#F44336', '#E91E63', '#9C27B0'],
-                    type: "solid",
-                    opacity: [1, 1]
-                },
-
-                labels: {!! $data['subjects_names'] !!},
-                markers: {
-                  size:0
-                },
-                yaxis: [{
-                    title: {
-                        text: "العدد"
-                    }
-                }],
-
-                tooltip: {
-                    shared: !0,
-                    intersect: !1,
-                    y: {
-                        formatter: function(e) {
-                            return void 0 !== e ? e.toFixed(0) + "" : e
-                        }
-                    }
-                },
-                legend: {
-                    offsetY: 7
-                },
-                grid: {
-                    padding: {
-                      left: 20,
-                      right: 20
-                    }
-                  }
-            };
-            (chart = new ApexCharts(document.querySelector("#apex-mixed-125"), options)).render();
         </script>
     @endsection

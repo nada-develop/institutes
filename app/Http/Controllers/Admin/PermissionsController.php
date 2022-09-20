@@ -46,7 +46,6 @@ class PermissionsController extends Controller
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         $permission->update($request->all());
-
         return redirect()->route('admin.permissions.index');
     }
 
@@ -70,6 +69,6 @@ class PermissionsController extends Controller
     {
         Permission::whereIn('id', request('ids'))->delete();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        return back();
     }
 }

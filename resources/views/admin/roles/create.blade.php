@@ -25,6 +25,7 @@
                         <span class="btn btn-info btn-xs deselect-all"
                             style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                     </div>
+
                     <select class="form-control {{ $errors->has('permissions') ? 'is-invalid' : '' }}"
                         data-toggle="select2" name="permissions[]" id="permissions" multiple required>
                         @foreach ($permissions as $id => $permission)

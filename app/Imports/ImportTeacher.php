@@ -42,7 +42,7 @@ class ImportTeacher implements ToModel,WithHeadingRow
             'another_subject_two_code' =>$row['another_subject_two_code'] ?? '',
             'degree' =>$row['degree'] ?? '',
             'degree_code' =>$row['degree_code'] ?? '',
-            'date_of_obtaining' => Carbon::parse($row['date_of_obtaining'])->format('Y-m-d') ?? '',
+            'date_of_obtaining' => $row['degree_code'] ? Carbon::parse($row['date_of_obtaining'])->format('Y-m-d')  : '',
             'hiring_type' =>$row['hiring_type'] ?? '',
             'hiring_date' =>Carbon::parse($row['hiring_date'])->format('Y-m-d'),
             'date_receipt_the_work' =>Carbon::parse($row['date_receipt_the_work'])->format('Y-m-d')?? '',
@@ -58,7 +58,7 @@ class ImportTeacher implements ToModel,WithHeadingRow
             'qualification_date' =>Carbon::parse($row['qualification_date'])->format('Y-m-d')?? '',
             'job_name' =>$row['job_name'] ?? '',
             'job_code' =>$row['job_code'] ?? '',
-            'efficiency' =>$row['efficiency'] ?? '',
+            'efficiency_name' =>$row['efficiency'] ?? '',
             'efficiency_code' =>$row['efficiency_code'] ?? '',
         ]);
     }

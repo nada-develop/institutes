@@ -12,7 +12,7 @@ $currentIndex = $teachers->firstItem();
             <th>رقم السجل</th>
             <th>المعهد الاساسى</th>
             <th> المعهد المنتدب اليه</th>
-            <th> خيارات</th>
+            <th style="width: 300px"> خيارات</th>
         </tr>
     </thead>
 

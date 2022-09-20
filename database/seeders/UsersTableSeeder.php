@@ -51,6 +51,7 @@ class UsersTableSeeder extends Seeder
         // }
 
         // $institutes =  Institute::all();
+        // $index = 1;
         // foreach ($institutes as $institute) {
         //     $ins_user =  User::create([
         //         'name' => $institute->name,
@@ -61,6 +62,9 @@ class UsersTableSeeder extends Seeder
         //         'management_code' => $institute->management_code
         //     ]);
         //     $ins_user->roles()->sync(2);
+        //     $index++;
+        //     if ($index == 100)
+        //         break;
         // }
 
         $subjects = Subject::all();
@@ -70,6 +74,6 @@ class UsersTableSeeder extends Seeder
                 $teacher->update(['subject_code'=>$subject->code ]);
             }
         }
-        
+
     }
 }

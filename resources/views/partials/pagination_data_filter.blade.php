@@ -10,7 +10,9 @@ $envPaninationLengthFilter = json_decode(env('PAGINATION_LENGTH_FILTER'), true) 
                         class="custom-select custom-select-sm form-control form-control-sm">
                         @foreach ($envPaninationLengthFilter as $envPaninationLength)
                             @if ($loop->last)
-                                <option value="-1">@lang('dashboard.All')</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
                             @else
                                 <option value="{{ $envPaninationLength }}">{{ $envPaninationLength }}</option>
                             @endif

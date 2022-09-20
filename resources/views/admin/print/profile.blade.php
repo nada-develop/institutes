@@ -142,8 +142,8 @@
         <tr>
             <th>النوع</th>
             <td> {{ $teacher->gender }}</td>
-            <th>رقم النوع</th>
-            <td> {{ $teacher->gender_code }}</td>
+            {{--  <th>رقم النوع</th>
+            <td> {{ $teacher->gender_code }}</td>  --}}
         </tr>
         <tr>
             <th>المؤهل</th>
@@ -153,22 +153,22 @@
         </tr>
         <tr>
 
-            <th>كود المؤهل </th>
-            <td> {{ $teacher->qualification_code }}</td>
+            {{--  <th>كود المؤهل </th>
+            <td> {{ $teacher->qualification_code }}</td>  --}}
             <th>تاريخ الحصول على المؤهل</th>
             <td> {{ Carbon\Carbon::parse($teacher->qualification_date)->format('d-m-Y') }}</td>
         </tr>
         <tr>
             <th>المنطقة</th>
             <td> {{ $teacher->region }}</td>
-            <th>كود المنطقة</th>
-            <td> {{ $teacher->region_code }}</td>
+            {{--  <th>كود المنطقة</th>
+            <td> {{ $teacher->region_code }}</td>  --}}
         </tr>
         <tr>
             <th>الاداره</th>
             <td> {{ $teacher->management }}</td>
-            <th>كود الاداره</th>
-            <td> {{ $teacher->management_code }}</td>
+            {{--  <th>كود الاداره</th>
+            <td> {{ $teacher->management_code }}</td>  --}}
         </tr>
         <tr>
 
@@ -195,35 +195,35 @@
 
             <th>التخصص</th>
             <td> {{ $teacher->subject }}</td>
-            <th> كود التخصص</th>
-            <td> {{ $teacher->subject_code }}</td>
+            {{--  <th> كود التخصص</th>
+            <td> {{ $teacher->subject_code }}</td>  --}}
         </tr>
         <tr>
 
             <th>تخصص اخر 1</th>
             <td> {{ $teacher->another_subject }}</td>
-            <th> كود التخصص الاخر 1</th>
-            <td> {{ $teacher->another_subject_code }}</td>
+            {{--  <th> كود التخصص الاخر 1</th>
+            <td> {{ $teacher->another_subject_code }}</td>  --}}
         </tr>
         <tr>
 
             <th>تخصص اخر 2</th>
             <td> {{ $teacher->another_subject_two }}</td>
-            <th> كود التخصص الاخر 2</th>
-            <td> {{ $teacher->another_subject_two_code }}</td>
+            {{--  <th> كود التخصص الاخر 2</th>
+            <td> {{ $teacher->another_subject_two_code }}</td>  --}}
         </tr>
         <tr>
 
             <th>الكفاءة</th>
             <td> {{ $teacher->efficiency }}</td>
-            <th> كود الكفاءة</th>
-            <td> {{ $teacher->efficiency_code }}</td>
+            {{--  <th> كود الكفاءة</th>
+            <td> {{ $teacher->efficiency_code }}</td>  --}}
         </tr>
         <tr>
             <th>الدرجة</th>
             <td> {{ $teacher->degree }}</td>
-            <th> كود الدرجة</th>
-            <td> {{ $teacher->management_code }}</td>
+            {{--  <th> كود الدرجة</th>
+            <td> {{ $teacher->management_code }}</td>  --}}
         </tr>
         <tr>
             <th>تاريخ الحصول على الدرجة</th>
@@ -240,8 +240,8 @@
         <tr>
             <th>الوظيفة على كادر المعلم</th>
             <td> {{ $teacher->job_staff }}</td>
-            <th> كود الوظيفة على الكادر</th>
-            <td> {{ $teacher->job_staff_code }}</td>
+            {{--  <th> كود الوظيفة على الكادر</th>
+            <td> {{ $teacher->job_staff_code }}</td>  --}}
         </tr>
         <tr>
             <th>تاريخ القرار </th>
@@ -252,14 +252,14 @@
         <tr>
             <th>الوظيفة </th>
             <td> {{ $teacher->job_name }}</td>
-            <th>كود الوظيفة </th>
-            <td> {{ $teacher->job_code }}</td>
+            {{--  <th>كود الوظيفة </th>
+            <td> {{ $teacher->job_code }}</td>  --}}
         </tr>
         <tr>
             <th>الموقف من العمل</th>
             <td> {{ $teacher->job_attitude }}</td>
-            <th>كود الموقف من العمل </th>
-            <td> {{ $teacher->job_attitude_code }}</td>
+            {{--  <th>كود الموقف من العمل </th>
+            <td> {{ $teacher->job_attitude_code }}</td>  --}}
         </tr>
 
 
@@ -283,7 +283,7 @@
 
 
     <script type="text/javascript">
-         window.addEventListener("load", window.print());
+       //  window.addEventListener("load", window.print());
     </script>
 
 </body>
